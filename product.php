@@ -15,9 +15,14 @@
 		</div>
 	</header>
     <article>
-		<div class="dmenu pure-g">
+		<div class="main">
 			<div class="pure-u-3-4 dpanel">
-				
+				<?php
+					require "database/databaseTools.php";
+					require "database/productFunctions.php";
+					$DBH = loginToDatabase();
+					getProductDetails($_GET, $DBH);
+				?>
 			</div>
 		</div>
     </article>

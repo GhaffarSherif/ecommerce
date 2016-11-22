@@ -15,22 +15,21 @@
 		</div>
 	</header>
     <article>
+		<form method='POST'>
+			<table align="center">
+				<td><input name="search" placeholder="Search..." size="25" /></td>
+				<td>
+					<select name="select">
+						<option value="product_name">Product Name</option>
+						<option value="item_condition">Condition</option>
+					</select>
+				</td>
+				<td><p><input type="submit" class="submit" name="Search" value="Search" /></p></td>
+			</table>
+		</form>
 		<div class="main">
 			<div class="pure-u-3-4 dpanel">
-				<form method='POST'>
-					<table align="center">
-						<td class="inputcell">
-							<input name="search" placeholder="Search..." size="25" style="width: 75%;" />
-						</td>
-						<td class="inputcell">
-							<select name="select">
-								<option value="product_name">Product Name</option>
-								<option value="item_condition">Condition</option>
-							</select>
-						</td>
-						<td class="inputcell"><p><input type="submit" class="submit" name="Search" value="Search" /></p></td>
-					</table>
-				</form>
+				
 				<?php
 					require "database/databaseTools.php";
 					require "database/productsFunctions.php";
