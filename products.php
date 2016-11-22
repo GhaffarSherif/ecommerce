@@ -16,7 +16,7 @@
 	</header>
     <article>
 		<div class="main">
-			<div class="pure-u-1-2 dpanel">
+			<div class="pure-u-3-4 dpanel">
 				<?php
 					require "database/databaseTools.php";
 					require "database/productsFunctions.php";

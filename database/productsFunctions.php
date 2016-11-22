@@ -4,6 +4,7 @@
 		$STH = $DBH->prepare("SELECT * FROM listing");
 		$STH->execute();
 		
+		//Start building the table
 		echo "<table border='1'><tr>";
 		echo "<th>Posted By</th><th>Product Name</th><th>Category</th><th>Price</th><th>Condition</th><th>List Date</th><th></th></tr>";
 		while($row = $STH->fetch()){

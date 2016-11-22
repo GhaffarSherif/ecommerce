@@ -11,11 +11,14 @@
 		$phone = $POST["phone"];
 		
 		if(verifyUsername($user, $DBH)){
-			$status = $DBH->query("SELECT ID FROM status WHERE name='GOOD'");
+			$status = $DBH->query("SELECT ID FROM status WHERE name='USER'");
 			$STH = $DBH->prepare("INSERT INTO user (user_id, username, passwordhash, fname, lname, email,
 								address, phone_num, status)
 								VALUES (NULL, '$user', '$pass', '$fname', '$lname', '$email',
 								'$address', '$phone'," . $status->fetch()["ID"] . ")");
+			$STH->execute();
+			$STH = $DBH->prepare("INSERT INTO balance (user_id, current_balance, total)
+								VALUES (LAST_INSERT_ID(), 0, 0)");
 			$STH->execute();
 		}
 		else

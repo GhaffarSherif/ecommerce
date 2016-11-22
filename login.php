@@ -36,7 +36,6 @@
 										</td>
 									</tr>
 								</table>
-								<input type="submit" name="submit" value="Login" />
 							</form>
 						</div>
 					</div>
@@ -64,6 +63,5 @@
     <script src="lib/jquery.js"></script>
     <script defer="defer" src="scripts/menu.js"></script>
     <script defer="defer" src="scripts/footer.js"></script>
-
 </body>
 </html>
