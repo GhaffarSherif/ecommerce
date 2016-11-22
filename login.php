@@ -48,7 +48,7 @@
 					require "database/loginFunctions.php";
 					$DBH = loginToDatabase();
 					if(isAlreadyLoggedIn()){
-						header('Location: index.php');
+						echo "<script>window.location.assign('index.php');</script>";
 					}
 					
 					if(isset($_POST["submit"])){

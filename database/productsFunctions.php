@@ -7,7 +7,7 @@
 		}
 		else{
 			//Get search results
-			$STH = $DBH->prepare("SELECT * FROM listing WHERE " . $POST["category"] . " LIKE '%" . $POST["search"] . "%'");
+			$STH = $DBH->prepare("SELECT * FROM listing WHERE " . $POST["select"] . " LIKE '%" . $POST["search"] . "%'");
 			$STH->execute();
 		}
 		

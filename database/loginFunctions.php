@@ -10,10 +10,10 @@
 		if(password_verify($pass, $hash)){
 			if(userCanLogIn($row["status"])){
 				$_SESSION["user"] = $row["user_id"];
-				/*echo '<script language="javascript">';
+				echo '<script language="javascript">';
 				echo 'alert("You have been successfully logged in!");';
-				echo '</script>';*/
-				header('Location: index.php');
+				echo '</script>';
+				echo "<script>window.location.assign('index.php');</script>";
 			}
 			else{
 				echo '<script language="javascript">';
