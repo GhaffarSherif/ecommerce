@@ -17,13 +17,27 @@
     <article>
 		<div class="main">
 			<div class="pure-u-3-4 dpanel">
+				<table align="center">
+					<tr id="dtable-item1">
+						<td class="inputcell2">
+							<input name="search" placeholder="Search..." size="25" style="width: 75%;" />
+							<select name="category">
+								<option value="user_id">Poster</option>
+								<option value="product_name">Product Name</option>
+								<option value="category">Category</option>
+								<option value="item_condition">Condition</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+				<p><input type="submit" class="submit" name="submit" value="Search" /></p>
 				<?php
 					require "database/databaseTools.php";
 					require "database/productsFunctions.php";
 					
 					$DBH = loginToDatabase();
 					
-					displayAllListings($DBH);
+					displayAllListings($_POST, $DBH);
 				?>
 			</div>
 		</div>
