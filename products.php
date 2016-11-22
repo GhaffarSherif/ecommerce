@@ -17,20 +17,20 @@
     <article>
 		<div class="main">
 			<div class="pure-u-3-4 dpanel">
-				<table align="center">
-					<tr id="dtable-item1">
-						<td class="inputcell2">
+				<form method='POST'>
+					<table align="center">
+						<td class="inputcell">
 							<input name="search" placeholder="Search..." size="25" style="width: 75%;" />
-							<select name="category">
-								<option value="user_id">Poster</option>
+						</td>
+						<td class="inputcell">
+							<select name="select">
 								<option value="product_name">Product Name</option>
-								<option value="category">Category</option>
 								<option value="item_condition">Condition</option>
 							</select>
 						</td>
-					</tr>
-				</table>
-				<p><input type="submit" class="submit" name="submit" value="Search" /></p>
+						<td class="inputcell"><p><input type="submit" class="submit" name="Search" value="Search" /></p></td>
+					</table>
+				</form>
 				<?php
 					require "database/databaseTools.php";
 					require "database/productsFunctions.php";
