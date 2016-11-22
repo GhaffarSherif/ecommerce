@@ -1,8 +1,8 @@
 <?php
 	function createMenu($SESSION){
-		/*if(isset($SESSION["user"])){
+		if(isset($SESSION["user"])){
 			//Connect to database
-			$servername = "localhost";
+			/*$servername = "localhost";
 			$username = "lucas";
 			$password = "alpine";
 			$dbname = "ecommerce";
@@ -18,10 +18,11 @@
 			$STH = $DBH->prepare(	"SELECT name FROM status WHERE ID=
 									(SELECT status FROM user WHERE user_id=" . $SESSION["user"] . ")");
 			$STH->execute();
-			$status["name"] = $STH->fetch();
+			$status["name"] = $STH->fetch();*/
 			
+			require_once "database/adminFunctions.php";
 			//Create the menu bar buttons for a user
-			if($status["name"] == "USER"){
+			if(isAdmin($SESSION)){//$status["name"] == "USER"){
 				echo "	<div class='dmenu-item pure-u-1 pure-u-lg-1-4'>
 							<a href='index.php'>Home</a>
 						</div>
@@ -44,7 +45,7 @@
 						</div>";
 			}
 			//Create the menu bar buttons for an admin
-			else if($status["name"] == "ADMIN"){
+			else{
 				echo "	<div class='dmenu-item pure-u-1 pure-u-lg-1-4'>
 							<a href='index.php'>Home</a>
 						</div>
@@ -69,7 +70,7 @@
 			}
 		}
 		//Create the menu bar buttons for an unregistered user
-		else{*/
+		else{
 			echo "	<div class='dmenu-item pure-u-1 pure-u-lg-1-4'>
 						<a href='index.php'>Home</a>
 					</div>
@@ -90,6 +91,6 @@
 					</div>
 					<div class='dmenu-item pure-u-1 pure-u-lg-1-8'>
 					</div>";
-		//}
+		}
 	}
 ?>
