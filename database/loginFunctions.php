@@ -3,15 +3,37 @@
 		$user = $POST["username"];
 		$pass = $POST["password"];
 		
-		$STH = $DBH->query("SELECT user_id, passwordhash FROM user WHERE username LIKE '" . $user . "'");
+		$STH = $DBH->query("SELECT user_id, passwordhash, status FROM user WHERE username LIKE '" . $user . "'");
 		$row = $STH->fetch();
 		$hash = $row["passwordhash"];
 		
 		if(password_verify($pass, $hash)){
-			$_SESSION["user"] = $row["user_id"];
-			echo "Successfully logged in!";
+			if(userCanLogIn($row["status"])){
+				$_SESSION["user"] = $row["user_id"];
+				/*echo '<script language="javascript">';
+				echo 'alert("You have been successfully logged in!");';
+				echo '</script>';*/
+				header('Location: index.php');
+			}
+			else{
+				echo '<script language="javascript">';
+				echo 'alert("You have been banned or have had your account locked!");';
+				echo '</script>';
+			}
+			
 		}
-		else
-			echo "Username or password incorrect!";
+		else{
+			echo '<script language="javascript">';
+			echo 'alert("Username or password is incorrect!");';
+			echo '</script>';
+		}
+	}
+	
+	function userCanLogIn($status){
+		return $status == 12 || $status == 13;
+	}
+	
+	function isAlreadyLoggedIn(){
+		return isset($_SESSION["user"]);
 	}
 ?>

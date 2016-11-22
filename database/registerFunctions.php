@@ -21,8 +21,6 @@
 								VALUES (LAST_INSERT_ID(), 0, 0)");
 			$STH->execute();
 		}
-		else
-			echo "Username is already taken";
 	}
 	
 	function verifyUsername($user, $DBH){

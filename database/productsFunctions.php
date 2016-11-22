@@ -5,8 +5,8 @@
 		$STH->execute();
 		
 		//Start building the table
-		echo "<table border='1'><tr>";
-		echo "<th>Posted By</th><th>Product Name</th><th>Category</th><th>Price</th><th>Condition</th><th>List Date</th><th></th></tr>";
+		echo "<table border='1' style='border-style: solid; border-width: medium;'><tr>";
+		echo "<th>Image</td><th>Posted By</th><th>Product Name</th><th>Category</th><th>Price</th><th>Condition</th><th>List Date</th><th>Link</th></tr>";
 		while($row = $STH->fetch()){
 			//Save the user id, and category id in variables
 			$uid = $row["user_id"];
@@ -24,6 +24,7 @@
 			
 			//Put all the information into individual table cells
 			echo "<tr>";
+			echo "<td><img style='width: 50px; height: 50px;' src='img/" . $rowcname["name"] . ".png' /></td>";
 			echo "<td>" . $rowuname["username"] . "</td>";
 			echo "<td>" . $row["product_name"] . "</td>";
 			echo "<td>" . $rowcname["name"] . "</td>";
