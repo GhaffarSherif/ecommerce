@@ -18,19 +18,11 @@
 	// Starting the session!
 	session_start();
 	// validating the data and then inserting into db
-	//include './validation/validation.php';
+	include './validation/validation.php';
 	include './database/adminFunctions.php';
 	
-	if (!isAdmin($_SESSION)){
-		echo '<script language="javascript">';
-		echo 'alert("NOT admin!");';
-		echo '</script>';
-			
-		header("Location: ./index.php");
-		exit();	
-		
-		
-	}
+	// Checking if user is admin or not!
+	adminStartVal($_SESSION);
 	
  ?>
      <div id="doverlay"></div>
@@ -179,7 +171,7 @@
 			// Redirect to the product
 		}
 		
-		if(isset($_POST["listingStatus"])){
+		if(isset($_POST["listingStatus"]) && listingExists($_POST)){
 			// DO some SQL INSERT to add product to DATABASE!
 			updateListingStatus($_POST);
 			// Alerting user that change was successful!
@@ -189,7 +181,7 @@
 			// Redirect to the product
 		}
 		
-		if(isset($_POST["ticketStatus"])){
+		if(isset($_POST["ticketStatus"]) && ticketExists($_POST)){
 			// DO some SQL INSERT to add product to DATABASE!
 			updateTicketStatus($_POST);
 			// Alerting user that change was successful!
