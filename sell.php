@@ -1,3 +1,16 @@
+ <?php 
+		// Starting the session and checking if user_id is valid
+		session_start();
+		if (!isset($_SESSION["user"])){
+			// Telling the user hes not logged in !
+			echo '<script language="javascript">';
+			echo 'alert("Please Login First!")';
+			echo '</script>';
+			
+			echo "<script>setTimeout(\"location.href = './login.php';\",1);</script>";
+		}
+		else{
+	?>
  <html>
  <head>
  	<title>GameExchange</title>
@@ -8,15 +21,7 @@
 	<link rel="stylesheet" type="text/css" href="styles/default.css">
  </head>
  <body>
-	<?php 
-		// Starting the session and checking if user_id is valid
-		session_start();
-		$_SESSION['user'] = 1;
-		if (!isset($_SESSION["user"])){
-			header("Location: ./index.php");
-			exit();
-		}
-	?>
+	
 	
      <div id="doverlay"></div>
 	 <header>
@@ -48,10 +53,10 @@
 								<td class="labelcell">Category:<span style="color: red">*</span></td>
 								<td class="inputcell2">
 								<select name="category">
-								  <option value="1">Cd's (Games)</option>
-								  <option value="2">Consoles</option>
-								  <option value="3">Perepherals</option>
-								  <option value="4">Trading Cards</option>
+								  <option value="2">Cd's (Games)</option>
+								  <option value="3">Consoles</option>
+								  <option value="4">Perepherals</option>
+								  <option value="1">Trading Cards</option>
 								</select>
 								</td>
 							</tr>
@@ -104,8 +109,11 @@
 			echo 'alert("Item created!")';
 			echo '</script>';
 			
+			$id = getPostedListId($_POST['productName']);
+			echo "<script>setTimeout(\"location.href = './product.php?id=".$id.")';\",1000);</script>";
 		}
 	?>
 
  </body>
  </html>
+		<?php }?>

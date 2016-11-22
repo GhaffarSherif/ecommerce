@@ -19,6 +19,7 @@
 	session_start();
 	// validating the data and then inserting into db
 	include './database/adminFunctions.php';
+	include './validation/validation.php';
 	
 	// Checking if user is admin or not!
 		if (!isAdmin($_SESSION)){
@@ -26,7 +27,7 @@
 			echo 'alert("NOT admin!");';
 			echo '</script>';
 			
-			header("Location: ./index.php");
+			echo "<script>setTimeout(\"location.href = './index.php';\",1000);</script>";
 			exit();	
 		}
 	
@@ -107,18 +108,12 @@
 	<article>
 		<form method="post" action="">
 			<h1>Manage Tickets</h1>
-				<div class="pure-u-1-2 dpanel">
+				<div class="pure-u-3-4 dpanel">
 					<div>
 						<legend >View Tickets</legend>
-						<table align="center">
-							
-							<tr id="dtable-item2">
-								<td class="labelcell">Display OPEN tickets here</td>
-								<td class="inputcell2">
-								</td>
-							</tr>
-							
-						</table>
+						<?php 
+							displayAllTickets();
+						?>
 					</div>
 					
 					<legend>Change Ticket Status</legend>
@@ -166,7 +161,7 @@
 	 <?php
 		
 		// If user submits, then validate user input!
-		if(isset($_POST["userStatus"]))
+		if(isset($_POST["userStatus"]) && adminUserVal($_POST) && usernameExists($_POST) )
 		{
 			// DO some SQL INSERT to add product to DATABASE!
 			updateUserStatus($_POST);
@@ -174,27 +169,26 @@
 			echo '<script language="javascript">';
 			echo 'alert("User Status Changed!");';
 			echo '</script>';
-			// Redirect to the product
+			
 		}
 		
-		if(isset($_POST["listingStatus"]) && listingExists($_POST)){
+		//Checking if the listing button is pressed and if it exists
+		if(isset($_POST["listingStatus"]) && adminListVal($_POST) && listingExists($_POST) ){
 			// DO some SQL INSERT to add product to DATABASE!
 			updateListingStatus($_POST);
 			// Alerting user that change was successful!
 			echo '<script language="javascript">';
 			echo 'alert("Listing Status Changed!");';
 			echo '</script>';
-			// Redirect to the product
 		}
-		
-		if(isset($_POST["ticketStatus"]) && ticketExists($_POST)){
+		// Checking if ticket button is pressed and if it exists
+		if(isset($_POST["ticketStatus"]) && adminTicketVal($_POST) && ticketExists($_POST) ){
 			// DO some SQL INSERT to add product to DATABASE!
 			updateTicketStatus($_POST);
 			// Alerting user that change was successful!
 			echo '<script language="javascript">';
 			echo 'alert("Ticket Status Changed!");';
 			echo '</script>';
-			// Redirect to the product
 		}
 	 ?>
 	 

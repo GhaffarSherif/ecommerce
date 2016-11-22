@@ -34,7 +34,12 @@
 		VALUES ('$user_id', '$product_name', '$category', '$price', '$item_condition', '$product_description', '$list_date', '$status')");
 		$STH->execute();
 	}
-	function getUserId($POST){
+	function getPostedListId($productName){
+		$DBH = initializeListingDb();
 		
+		
+		$STH = $DBH->query("SELECT * FROM listing WHERE product_name='$productName' ORDER BY listing_id DESC LIMIT 1");
+		$row = $STH->fetch();
+		return $row['listing_id'];
 	}
 ?>

@@ -79,7 +79,53 @@
 		}
 	}
 	
+	// Checking that the username fields are valid!
+	function adminUserVal($POST){
+		$username = $POST['username'];
+		
+		if (empty($username)){
+			 echo '<script language="javascript">';
+			 echo 'alert("Please fill username ID")';
+			 echo '</script>';
+			return FALSE;
+		}
+		else
+			return TRUE;
+	}
 	
+	// Checking that the username fields are valid!
+	function adminListVal($POST){
+		$listId = $POST['listId'];
+		
+		if (empty($listId)){
+			 echo '<script language="javascript">';
+			 echo 'alert("Please fill Listing ID")';
+			 echo '</script>';
+			return FALSE;	
+		}
+		else
+			return TRUE;
+	}
 	
-	
+	// Checking that the username fields are valid!
+	function adminTicketVal($POST){
+		$ticketId = $POST['ticketId'];
+		$verifiedBy = $POST['verifiedBy'];
+		
+		if (empty($ticketId) || empty($verifiedBy)){
+			 echo '<script language="javascript">';
+			 echo 'alert("Please fill ticket ID field")';
+			 echo '</script>';
+			return FALSE;
+		}
+		else if(!is_numeric($ticketId) || $ticketId <= 0)
+		{
+			echo '<script language="javascript">';
+			 echo 'alert("Ticket ID is not numeric or negative!")';
+			 echo '</script>';
+			return FALSE;
+		}
+		else
+			return TRUE;
+	}
 ?>
