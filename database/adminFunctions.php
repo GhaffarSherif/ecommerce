@@ -70,4 +70,19 @@
 	function viewOpenPendingTickets(){
 		
 	}
+	
+	function isAdmin($SESSION){
+		$DBH = initializeDb();
+		$user_id = $SESSION['user'];
+		
+		$STH = $DBH->query("SELECT status FROM user WHERE user_id='$user_id'");
+		$row = $STH->fetch();
+		
+		if ($row['status'] == 13){
+			return TRUE;
+		}
+		else{
+			return FALSE;
+		}
+	}
 ?>

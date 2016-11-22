@@ -14,11 +14,30 @@
  
  </head>
  <body>
+ <?php
+	// Starting the session!
+	session_start();
+	// validating the data and then inserting into db
+	//include './validation/validation.php';
+	include './database/adminFunctions.php';
+	
+	if (!isAdmin($_SESSION)){
+		echo '<script language="javascript">';
+		echo 'alert("NOT admin!");';
+		echo '</script>';
+			
+		header("Location: ./index.php");
+		exit();	
+		
+		
+	}
+	
+ ?>
      <div id="doverlay"></div>
      
 	 <header>
          <div id="dmenu" class="dmenu pure-g">
-			<?php session_start(); require "scripts/createMenuBar.php"; createMenu($_SESSION); ?>
+			<?php  require "scripts/createMenuBar.php"; createMenu($_SESSION); ?>
          </div>
      </header>
     
@@ -41,8 +60,8 @@
 									<select name="uStatus">
 									  <option value="5">BAN</option>
 									  <option value="6">LOCK</option>
-									  <option value="LOCK">User</option>
-									  <option value="GOOD">Admin</option>
+									  <option value="12">User</option>
+									  <option value="13">Admin</option>
 									</select>
 									</td>
 								</tr>
@@ -54,8 +73,6 @@
 			</p>
 		</form>
 	</article>
-	
-	
 	
 	<article>
 		<form method="post" action="">
@@ -74,9 +91,9 @@
 								<td class="labelcell">Status:</td>
 								<td class="inputcell2">
 								<select name="lStatus">
-								  <option value="AVAILABLE">AVAILABLE</option>
-								  <option value="PURCHASED">PURCHASED</option>
-								  <option value="LOCKED">LOCKED</option>
+								  <option value="7">AVAILABLE</option>
+								  <option value="8">PURCHASED</option>
+								  <option value="6">LOCKED</option>
 								</select>
 								</td>
 							</tr>
@@ -84,7 +101,7 @@
 					</div>
 				</div>
 			<p>
-				<input type="submit" name="listingStatus" class="listingStatus" value="Confirm" />
+				<input type="submit" name="listingStatus" value="Confirm" />
 			</p>
 		</form>
 	</article>
@@ -149,9 +166,7 @@
      <script defer="defer" src="scripts/footer.js"></script>
 
 	 <?php
-		// validating the data and then inserting into db
-		//include './validation/validation.php';
-		include './database/adminFunctions.php';
+		
 		// If user submits, then validate user input!
 		if(isset($_POST["userStatus"]))
 		{

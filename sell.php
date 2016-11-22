@@ -104,6 +104,8 @@
 			echo '</script>';
 			
 			// Redirect to the product
+			header("Location: ./product.php?id=1");
+			exit();
 		}
 	?>
 
