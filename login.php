@@ -36,7 +36,6 @@
 										</td>
 									</tr>
 								</table>
-								<input type="submit" name="submit" value="Login" />
 							</form>
 						</div>
 					</div>
@@ -48,6 +47,9 @@
 					require "database/databaseTools.php";
 					require "database/loginFunctions.php";
 					$DBH = loginToDatabase();
+					if(isAlreadyLoggedIn()){
+						header('Location: index.php');
+					}
 					
 					if(isset($_POST["submit"])){
 						loginUser($_POST, $DBH);
@@ -64,6 +66,5 @@
     <script src="lib/jquery.js"></script>
     <script defer="defer" src="scripts/menu.js"></script>
     <script defer="defer" src="scripts/footer.js"></script>
-
 </body>
 </html>
