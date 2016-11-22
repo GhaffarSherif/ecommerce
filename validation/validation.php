@@ -27,7 +27,7 @@
 		}
 		
 		// Everything is alright!
-		RETURN TRUE;
+		return TRUE;
 	}
 	
 	// This function validates input values in the sell.php page
@@ -79,17 +79,7 @@
 		}
 	}
 	
-	// In the begginging of the admin page, doing some verification
-	function adminStartVal($SESSION){
-		// Checking if user is admin or not!
-		if (!isAdmin($SESSION)){
-			echo '<script language="javascript">';
-			echo 'alert("NOT admin!");';
-			echo '</script>';
-			
-			header("Location: ./index.php");
-			exit();	
-		}
-	}
+	
+	
 	
 ?>

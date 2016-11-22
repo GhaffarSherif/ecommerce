@@ -1,6 +1,6 @@
 <?php 
 	// Start the db and return DBH reference
-	function initializeDb(){
+	function initializeAdminDb(){
 		$servername = "localhost";
 		$username = "lucas";
 		$password = "alpine";
@@ -19,7 +19,7 @@
 	
 	// Admin can ban or lock accounts or grant them admin privilege or demote
 	function updateUserStatus($POST ){
-		$DBH = initializeDb();
+		$DBH = initializeAdminDb();
 		
 		$username = $POST["username"];
 		$uStatus = $POST["uStatus"];
@@ -34,7 +34,7 @@
 	
 	// Admin can change status of a listing
 	function updateListingStatus($POST){
-		$DBH = initializeDb();
+		$DBH = initializeAdminDb();
 		
 		$listId = $POST["listId"];
 		$lStatus = $POST["lStatus"];
@@ -48,7 +48,7 @@
 	
 	// Admin can Change the status of tickets
 	function updateTicketStatus($POST){
-		$DBH = initializeDb();
+		$DBH = initializeAdminDb();
 		
 		$ticketId = $POST["ticketId"];
 		$tStatus = $POST["tStatus"];
@@ -72,7 +72,7 @@
 	}
 	
 	function isAdmin($SESSION){
-		$DBH = initializeDb();
+		$DBH = initializeAdminDb();
 		$user_id = $SESSION['user'];
 		
 		$STH = $DBH->query("SELECT status FROM user WHERE user_id='$user_id'");
@@ -88,7 +88,7 @@
 	
 	// Checking if the listing exists
 	function ticketExists($POST){
-		$DBH = initializeDb();
+		$DBH = initializeAdminDb();
 		$ticketId = $POST['ticketId'];
 		
 		$STH = $DBH->query("SELECT * FROM ticket WHERE ticket_id='$ticketId'");
@@ -103,7 +103,7 @@
 	}
 	
 	function listingExists($POST){
-		$DBH = initializeDb();
+		$DBH = initializeAdminDb();
 		$listId = $POST['listId'];
 		
 		$STH = $DBH->query("SELECT * FROM listing WHERE listing_id='$listId'");

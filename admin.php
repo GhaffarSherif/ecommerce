@@ -18,11 +18,17 @@
 	// Starting the session!
 	session_start();
 	// validating the data and then inserting into db
-	include './validation/validation.php';
 	include './database/adminFunctions.php';
 	
 	// Checking if user is admin or not!
-	adminStartVal($_SESSION);
+		if (!isAdmin($_SESSION)){
+			echo '<script language="javascript">';
+			echo 'alert("NOT admin!");';
+			echo '</script>';
+			
+			header("Location: ./index.php");
+			exit();	
+		}
 	
  ?>
      <div id="doverlay"></div>

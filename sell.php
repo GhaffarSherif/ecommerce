@@ -11,6 +11,7 @@
 	<?php 
 		// Starting the session and checking if user_id is valid
 		session_start();
+		$_SESSION['user'] = 1;
 		if (!isset($_SESSION["user"])){
 			header("Location: ./index.php");
 			exit();
@@ -103,9 +104,6 @@
 			echo 'alert("Item created!")';
 			echo '</script>';
 			
-			// Redirect to the product
-			header("Location: ./product.php?id=1");
-			exit();
 		}
 	?>
 
