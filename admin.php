@@ -1,3 +1,20 @@
+  <?php
+	// Starting the session!
+	session_start();
+	// validating the data and then inserting into db
+	include './database/adminFunctions.php';
+	include './validation/validation.php';
+	
+	// Checking if user is admin or not!
+		if (!isAdmin($_SESSION)){
+			echo '<script language="javascript">';
+			echo 'alert("NOT admin!");';
+			echo '</script>';
+			
+			echo "<script>setTimeout(\"location.href = './index.php';\",0);</script>";
+			exit();	
+		}
+ ?>
  <html>
  <head>
 
@@ -14,24 +31,7 @@
  
  </head>
  <body>
- <?php
-	// Starting the session!
-	session_start();
-	// validating the data and then inserting into db
-	include './database/adminFunctions.php';
-	include './validation/validation.php';
-	
-	// Checking if user is admin or not!
-		if (!isAdmin($_SESSION)){
-			echo '<script language="javascript">';
-			echo 'alert("NOT admin!");';
-			echo '</script>';
-			
-			echo "<script>setTimeout(\"location.href = './index.php';\",1000);</script>";
-			exit();	
-		}
-	
- ?>
+
      <div id="doverlay"></div>
      
 	 <header>
@@ -41,7 +41,7 @@
      </header>
     
 	<article>
-		<form method="post" action="" onsubmit="form.submit.disabled = true;">
+		<form method="post" action="" >
 			<h1>Manage User Accounts</h1>
 				<div class="pure-u-1-2 dpanel">
 					<div>
@@ -115,7 +115,7 @@
 							displayAllTickets();
 						?>
 					</div>
-					
+					<br/>
 					<legend>Change Ticket Status</legend>
 					<table align="center">
 							

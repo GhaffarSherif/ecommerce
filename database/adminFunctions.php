@@ -167,10 +167,23 @@
 				echo "<td>" . $row["listing_id"] . "</td>";
 				echo "<td>" . $row["verified_by"] . "</td>";
 				echo "<td>" . $rowsname["name"] . "</td>";
-				echo "<td><form action='ticketView.php' method='GET'><input type='hidden' id='ticket_id' name='ticket_id' value='" . $row['ticket_id'] . "' /><input type='submit' value='View Details'/></form></td>";
+				echo "<td><form action='ticketView.php' method='GET'><input type='hidden' id='ticket_id' name='ticket_id' value='" . $row['ticket_id'] . "' /><input type='submit' value='View Details' /></form></td>";
 			echo "</tr>";
 		}
 		echo "</table>";
-	}	
+	}
+	
+	function dispalyTicketDetails($id){
+		// Logging into the db
+		$DBH = initializeAdminDb();
+		
+		// Retriving all ticket details
+		$STH = $DBH->query("SELECT description FROM ticket WHERE ticket_id='$id'");
+		$STH->execute();
+		
+		$row = $STH->fetch();
+		
+		echo $row['description'];
+	}
 		
 ?>
