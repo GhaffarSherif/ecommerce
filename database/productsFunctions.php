@@ -1,8 +1,15 @@
 <?php
-	function displayAllListings($DBH){
-		//Get all the listings
-		$STH = $DBH->prepare("SELECT * FROM listing");
-		$STH->execute();
+	function displayAllListings($POST, $DBH){
+		if(!(isset($POST["Search"]))){
+			//Get all the listings
+			$STH = $DBH->prepare("SELECT * FROM listing");
+			$STH->execute();
+		}
+		else{
+			//Get search results
+			$STH = $DBH->prepare("SELECT * FROM listing WHERE " . $POST["category"] . " LIKE '%" . $POST["search"] . "%'");
+			$STH->execute();
+		}
 		
 		//Start building the table
 		echo "<table border='1' style='border-style: solid; border-width: medium;'><tr>";
