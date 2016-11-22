@@ -78,4 +78,18 @@
 			return FALSE;
 		}
 	}
+	
+	// In the begginging of the admin page, doing some verification
+	function adminStartVal($SESSION){
+		// Checking if user is admin or not!
+		if (!isAdmin($SESSION)){
+			echo '<script language="javascript">';
+			echo 'alert("NOT admin!");';
+			echo '</script>';
+			
+			header("Location: ./index.php");
+			exit();	
+		}
+	}
+	
 ?>

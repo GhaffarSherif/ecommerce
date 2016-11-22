@@ -85,4 +85,35 @@
 			return FALSE;
 		}
 	}
+	
+	// Checking if the listing exists
+	function ticketExists($POST){
+		$DBH = initializeDb();
+		$ticketId = $POST['ticketId'];
+		
+		$STH = $DBH->query("SELECT * FROM ticket WHERE ticket_id='$ticketId'");
+		$row = $STH->fetch();
+		
+		if ($row['ticket_id'] == null){
+			return FALSE;
+		}
+		else{
+			return TRUE;
+		}
+	}
+	
+	function listingExists($POST){
+		$DBH = initializeDb();
+		$listId = $POST['listId'];
+		
+		$STH = $DBH->query("SELECT * FROM listing WHERE listing_id='$listId'");
+		$row = $STH->fetch();
+		
+		if ($row['listing_id'] == null){
+			return FALSE;
+		}
+		else{
+			return TRUE;
+		}
+	}
 ?>
