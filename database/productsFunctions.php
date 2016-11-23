@@ -32,10 +32,10 @@
 			//Put all the information into individual table cells
 			echo "<tr>";
 			echo "<td><img style='width: 50px; height: 50px;' src='img/" . $rowcname["name"] . ".png' /></td>";
-			echo "<td>" . $rowuname["username"] . "</td>";
+			echo "<td><a href='user.php?userp=" . $uid . "'>" . $rowuname["username"] . "</a></td>";
 			echo "<td>" . $row["product_name"] . "</td>";
 			echo "<td>" . $rowcname["name"] . "</td>";
-			echo "<td>" . $row["price"] . "</td>";
+			echo "<td>$" . $row["price"] . "</td>";
 			echo "<td>" . $row["item_condition"] . "</td>";
 			echo "<td>" . $row["list_date"] . "</td>";
 			echo "<td><form action='product.php' method='GET'><input type='hidden' id='listing_id' name='listing_id' value='" . $row['listing_id'] . "' /><input type='submit' value='Go to'/></form></td>";
