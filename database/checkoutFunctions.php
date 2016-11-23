@@ -38,10 +38,17 @@
 			if(checkBalance($total, $DBH)){
 				if(checkListingStatuses($cart, $DBH)){
 					addTransaction($total, $cart, $DBH);
+					
+					echo '<script language="javascript">';
+					echo 'alert("Purchase complete!");';
+					echo '</script>';
+				
+					echo "<script>setTimeout(\"location.href = './index.php';\",0);</script>";
+					exit();
 				}
 				else{
 					echo '<script language="javascript">';
-					echo 'alert("Invalid product in cart! Please remove it before continuing");';
+					echo 'alert("Invalid product in cart! Please remove it before continuing!");';
 					echo '</script>';
 				
 					echo "<script>setTimeout(\"location.href = './cart.php';\",0);</script>";
@@ -118,7 +125,7 @@
 			$STH->execute();
 			$status = $STH->fetch();
 			
-			if($status != 7)
+			if($status["status"] != 7)
 				return false;
 		}
 		
@@ -126,7 +133,12 @@
 	}
 	
 	function clearCart(){
-		setcookie("cart","", time()-3600);
-		unset($_COOKIE["cart"]);
+		$user_id = $_SESSION["user"];
+		$past = time() - 3600;
+		foreach ($_COOKIE as $key => $value )
+		{
+			setcookie( $key, $value, $past, '/' );
+		}
+		$_SESSION["user"] = $user_id;
 	}
 ?>

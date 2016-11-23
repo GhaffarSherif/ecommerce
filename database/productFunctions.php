@@ -72,6 +72,8 @@
 					</table>";
 		}
 		
+		print_r($_COOKIE);
+		
 		//Check if a report has been submitted
 		if(isset($_POST["report"])){
 			reportListing($_POST["report"], $_SESSION["user"], $row, $DBH);
@@ -82,10 +84,18 @@
 		
 		//Check if the add to cart button has been pressed
 		if(isset($_POST["listing_id"])){
-			addToCart();
-			echo '<script language="javascript">';
-			echo 'alert("Item has been added to the cart!");';
-			echo '</script>';
+			//Check for duplicates
+			if(checkCart()){
+				addToCart();
+				echo '<script language="javascript">';
+				echo 'alert("Item has been added to the cart!");';
+				echo '</script>';
+			}
+			else{
+				echo '<script language="javascript">';
+				echo 'alert("Item is already in cart!");';
+				echo '</script>';
+			}
 		}
 		
 		return $row;
@@ -113,7 +123,7 @@
 	
 	function addToCart(){
 		//Check if there already is a cart
-		if(isset($_COOKIE["cart"])){
+		if(isset($_COOKIE["cart"]) && !empty($_COOKIE["cart"])){
 			//Remove slashes that are escaping quotes
 			if(get_magic_quotes_gpc() == true){
 				foreach($_COOKIE as $key){
@@ -121,16 +131,35 @@
 				}
 			}
 			$cart = json_decode($_COOKIE["cart"], true); //Return to a regular array
-			array_push($cart, $_POST["listing_id"]); //Add the new item
+			array_push($cart, $_GET["id"]); //Add the new item
 			$json_cart = json_encode($cart); //Turn the cart to JSON
 			setcookie("cart", $json_cart, time() + (86400 * 30), "/"); //Insert the cookie
-
 		}
 		else{
-			$cart = array(); //Create an array
-			array_push($cart, $_POST["listing_id"]); //Add the new item
+			$cart = array(); //Create an array			
+			array_push($cart, $_GET["id"]); //Add the new item
 			$json_cart = json_encode($cart); //Turn the cart to JSON
 			setcookie("cart", $json_cart, time() + (86400 * 30), "/"); //Insert the cookie
+		}
+	}
+	
+	function checkCart(){
+		if(isset($_COOKIE["cart"]) && !empty($_COOKIE["cart"])){
+			//Remove slashes that are escaping quotes
+			if(get_magic_quotes_gpc() == true){
+				foreach($_COOKIE as $key){
+					$_COOKIE[$key] = stripslashes($value);
+				}
+			}
+			$cart = json_decode($_COOKIE["cart"], true); //Return to a regular array
+			
+			$listing_id = $_POST["listing_id"];
+			
+			//Dupilcation check 
+			return ($key = array_search($listing_id, $cart)) === false;
+		}
+		else{
+			return true;
 		}
 	}
 	
