@@ -1,7 +1,7 @@
 @font-face {
-  font-family: PixelCowboy;
+  font-family: Resagokr;
   font-style: normal;
-  src: url("../fonts/PixelCowboy.otf");
+  src: url("../fonts/Resagokr.otf");
 }
 html,
 body {
@@ -17,7 +17,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'PixelCowboy';
+  font-family: 'Resagokr';
   font-weight: normal;
 }
 .dmenu-item {
@@ -41,7 +41,7 @@ h6 {
   -ms-transition-duration: 0.2s;
   -o-transition-duration: 0.2s;
   transition-duration: 0.2s;
-  font-family: 'PixelCowboy';
+  font-family: 'Resagokr';
   font-weight: normal;
   color: #e5edb8;
   text-transform: uppercase;
@@ -65,7 +65,7 @@ h6 {
   color: #adb85f;
 }
 .dpanel {
-  font-family: 'PixelCowboy';
+  font-family: 'Resagokr';
   color: #e5edb8;
   background-color: #300018;
   padding: 16px;
@@ -95,7 +95,7 @@ h6 {
   margin-bottom: 0px;
 }
 .dselectlist li {
-  font-family: 'PixelCowboy';
+  font-family: 'Resagokr';
   color: #e5edb8;
   background-color: #5a3d31;
   -webkit-box-shadow: 0px 2px 2px rgba(0,0,0,0.8);
@@ -110,7 +110,7 @@ h6 {
   color: #5a3d31;
 }
 .dfooter {
-  font-family: 'PixelCowboy';
+  font-family: 'Resagokr';
   color: #e5edb8;
   background-color: #300018;
   text-align: center;
