@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	if(!(isset($_SESSION["user"]))){
 		echo '<script language="javascript">';
 		echo 'alert("Please log in or register before checking out!");';
@@ -21,32 +22,30 @@
 	<div id="doverlay"></div>
 	<header>
 		<div id="dmenu" class="dmenu pure-g">
-			<?php session_start(); require "scripts/createMenuBar.php"; createMenu($_SESSION); ?>
+			<?php require "scripts/createMenuBar.php"; createMenu($_SESSION); ?>
 		</div>
 	</header>
     <article>
-		<form method='POST'>
-			<table align="center">
-				<td><input name="search" placeholder="Search..." size="25" /></td>
-				<td>
-					<select name="select">
-						<option value="product_name">Product Name</option>
-						<option value="item_condition">Condition</option>
-					</select>
-				</td>
-				<td><p><input type="submit" class="submit" name="Search" value="Search" /></p></td>
-			</table>
-		</form>
 		<div class="main">
 			<div class="pure-u-3-4 dpanel">
 				<?php
 					require "database/databaseTools.php";
-					require "database/productsFunctions.php";
+					require "database/checkoutFunctions.php";
 					
 					$DBH = loginToDatabase();
 					
 					showCart($DBH);
 				?>
+				<form method='POST'>
+					<input type="hidden" id="confirm" name="confirm" value="" />
+					<input type="submit" name="edit" onclick="promptMessage()" value="Confirm" />
+				</form>
+				
+				<script language="javascript">
+					promptMessage = function () {
+						confirm('Are you sure you want to purchase everything in the cart?');
+					}
+				</script>
 			</div>
 		</div>
     </article>

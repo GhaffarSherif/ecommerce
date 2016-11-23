@@ -18,7 +18,7 @@
 		//Start building the table
 		echo "<table border='1' style='border-style: solid; border-width: medium;' align='center'><tr style='color: #e5edb8;'>";
 		echo "<th>Product Name</th><th>Price</th><th>Remove</th></tr>";
-		$total = 0;
+		$total = 0; //Running total of the cart
 		//Create a table entry for each item in the cart
 		foreach($cart as $item){
 			$STH = $DBH->prepare("SELECT * FROM listing WHERE listing_id='" . $item . "'");
