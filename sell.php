@@ -32,25 +32,25 @@
     
 	<article>
 		<form id="form2" method="post" action="">
-			<h1>Create a Listing!</h1>
+			<h1 style="color: #e5edb8">Create a Listing!</h1>
 				<div class="pure-u-1-2 dpanel">
 					<div>
 						<legend>Fill Out The Following Information:</legend>
-						<table align="center">
-							<tr id="dtable-item1">
-								<td class="labelcell" style="margin-bottom: 5%">Listing Title:<span style="color: red">*</span></td>
-								<td class="inputcell2">
+						<table align="center" >
+							<tr  >
+								<td style="color: #e5edb8" style="margin-bottom: 5%">Listing Title:<span style="color: red">*</span></td>
+								<td >
 								<input name="productName" size="25" style="width: 75%;" />
 								</td>
 							</tr>
-							<tr id="dtable-item2">
-								<td class="labelcell">Description:<span style="color: red">*</span></td>
+							<tr >
+								<td style="color: #e5edb8" class="labelcell">Description:<span style="color: red">*</span></td>
 								<td class="inputcell2">
 								<input name="description" type="text" size="25" style="width: 75%;" />
 								</td>
 							</tr>
-							<tr id="dtable-item2">
-								<td class="labelcell">Category:<span style="color: red">*</span></td>
+							<tr >
+								<td style="color: #e5edb8" class="labelcell">Category:<span style="color: red">*</span></td>
 								<td class="inputcell2">
 								<select name="category">
 								  <option value="2">Cd's (Games)</option>
@@ -60,14 +60,14 @@
 								</select>
 								</td>
 							</tr>
-							<tr id="dtable-item2">
-								<td class="labelcell">Listing Price:<span style="color: red">*</span></td>
+							<tr >
+								<td style="color: #e5edb8" class="labelcell">Listing Price:<span style="color: red">*</span></td>
 								<td class="inputcell2">
 								<input name="price" type="text" size="25" style="width: 75%;" />
 								</td>
 							</tr>
-							<tr id="dtable-item2">
-								<td class="labelcell">Item Condition:<span style="color: red">*</span></td>
+							<tr >
+								<td style="color: #e5edb8" class="labelcell">Item Condition:<span style="color: red">*</span></td>
 								<td class="inputcell2">
 								<select name="condition">
 								  <option value="GOOD">GOOD</option>

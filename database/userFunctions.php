@@ -199,12 +199,12 @@
 			
 			
 			//Put all the information into individual table cells
-			echo "<tr align='center'>";
+			echo "<tr style='color: #e5edb8;' align='center'>";
 				echo "<td>" . $row["order_id"] . "</td>";
 				echo "<td>" . $row["order_date"] . "</td>";
 				echo "<td>" . $row["order_total"] . "</td>";
 				echo "<td>" . $rowsname["name"] . "</td>";
-				echo "<td><form action='orderView.php' method='GET'><input type='hidden' id='order_id' name='order_id' value='" . $row['order_id'] . "' /><input type='submit' value='View Details' /></form></td>";
+				echo "<td style='color: black;'><form action='orderView.php' method='GET'><input type='hidden' id='order_id' name='order_id' value='" . $row['order_id'] . "' /><input type='submit' value='View Details' /></form></td>";
 			echo "</tr>";
 		}
 		echo "</table>";

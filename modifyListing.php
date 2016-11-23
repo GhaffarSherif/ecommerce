@@ -48,19 +48,19 @@
 						<legend>Update Your Listing:</legend>
 						<table align="center">
 							<tr id="dtable-item1">
-								<td class="labelcell" style="margin-bottom: 5%">Listing Title:</td>
+								<td style="color: #e5edb8" class="labelcell" style="margin-bottom: 5%">Listing Title:</td>
 								<td class="inputcell2">
 								<input name="productName" size="25" style="width: 75%;" />
 								</td>
 							</tr>
 							<tr id="dtable-item2">
-								<td class="labelcell">Description:</td>
+								<td style="color: #e5edb8"  class="labelcell">Description:</td>
 								<td class="inputcell2">
 								<input name="description" type="text" size="25" style="width: 75%;" />
 								</td>
 							</tr>
 							<tr id="dtable-item2">
-								<td class="labelcell">Category:</td>
+								<td style="color: #e5edb8" class="labelcell">Category:</td>
 								<td class="inputcell2">
 								<select name="category">
 								  <option value="2">Cd's (Games)</option>
@@ -71,13 +71,13 @@
 								</td>
 							</tr>
 							<tr id="dtable-item2">
-								<td class="labelcell">Listing Price:</td>
+								<td style="color: #e5edb8" class="labelcell">Listing Price:</td>
 								<td class="inputcell2">
 								<input name="price" type="text" size="25" style="width: 75%;" />
 								</td>
 							</tr>
 							<tr id="dtable-item2">
-								<td class="labelcell">Item Condition:</td>
+								<td  style="color: #e5edb8"class="labelcell">Item Condition:</td>
 								<td class="inputcell2">
 								<select name="condition">
 								  <option value="GOOD">GOOD</option>
@@ -121,8 +121,7 @@
 			echo 'alert("Lisiting Mofified!")';
 			echo '</script>';
 			
-			$id = getPostedListId($_POST['productName']);
-			echo "<script>setTimeout(\"location.href = './product.php?id=".$id."';\",1000);</script>";
+			echo "<script>setTimeout(\"location.href = './product.php?id=".$_GET['listing_id']."';\",1000);</script>";
 		}
 		
 		//if The user deletes Listing 

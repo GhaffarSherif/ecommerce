@@ -43,14 +43,14 @@
 					<div>
 						<legend text-align="center">Select What To Do With User:</legend>
 						<table align="center">
-							<tr id="dtable-item1">
-								<td class="labelcell" style="margin-bottom: 5%">Username: </td>
+							<tr >
+								<td style="color: #e5edb8" style="margin-bottom: 5%">Username: </td>
 								<td class="inputcell2">
 								<input name="username" size="25" style="width: 75%;" />
 								</td>
 							</tr>
-							<tr id="dtable-item2">
-									<td class="labelcell">User Status:</td>
+							<tr >
+									<td style="color: #e5edb8">User Status:</td>
 									<td class="inputcell2">
 									<select name="uStatus">
 									  <option value="5">BAN</option>
@@ -76,14 +76,14 @@
 					<div>
 						<legend>Select A Listing To Remove:</legend>
 						<table align="center">
-							<tr id="dtable-item2">
-								<td class="labelcell">Listing Id:</td>
+							<tr >
+								<td style="color: #e5edb8" class="labelcell">Listing Id:</td>
 								<td class="inputcell2">
 								<input name="listId" size="25" style="width: 75%;" />
 								</td>
 							</tr>
-							<tr id="dtable-item2">
-								<td class="labelcell">Status:</td>
+							<tr >
+								<td style="color: #e5edb8" class="labelcell">Status:</td>
 								<td class="inputcell2">
 								<select name="lStatus">
 								  <option value="7">AVAILABLE</option>
@@ -116,13 +116,13 @@
 					<table align="center">
 							
 							<tr id="dtable-item2">
-								<td class="labelcell">Ticket ID:</td>
+								<td style="color: #e5edb8" class="labelcell">Ticket ID:</td>
 								<td class="inputcell2">
 								<input type="text" name="ticketId" >
 								</td>
 							</tr>
 							<tr id="dtable-item2">
-								<td class="labelcell">Status:</td>
+								<td  style="color: #e5edb8" class="labelcell">Status:</td>
 								<td class="inputcell2">
 								<select name="tStatus">
 								  <option value="1">OPEN</option>
@@ -132,7 +132,7 @@
 								</td>
 							</tr>
 							<tr id="dtable-item2">
-								<td class="labelcell">Verified By:</td>
+								<td style="color: #e5edb8" class="labelcell">Verified By:</td>
 								<td class="inputcell2">
 								<input type="text" name="verifiedBy" >
 								</td>

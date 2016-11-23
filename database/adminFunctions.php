@@ -141,7 +141,7 @@
 		$STH->execute();
 		
 		//Start building the table
-		echo "<table border='1' align='center' style='border-style: solid; border-width: medium;'><tr>";
+		echo "<table border='1' style='border-style: solid; border-width: medium;' align='center'><tr style='color: #e5edb8;'>";
 		echo "<th>Ticket ID</th><th>Sender</th><th>Listing ID</th><th>Verified By</th><th>Status</th><th>View Details</th></tr>";
 		while($row = $STH->fetch()){
 			//Save the user id, and category id in variables
@@ -161,13 +161,18 @@
 			
 			
 			//Put all the information into individual table cells
-			echo "<tr align='center'>";
+			echo "<tr style='color: #e5edb8;' align='center'>";
 				echo "<td>" . $row["ticket_id"] . "</td>";
 				echo "<td>" . $rowuname["username"] . "</td>";
 				echo "<td>" . $row["listing_id"] . "</td>";
 				echo "<td>" . $row["verified_by"] . "</td>";
 				echo "<td>" . $rowsname["name"] . "</td>";
-				echo "<td><form action='ticketView.php' method='GET'><input type='hidden' id='ticket_id' name='ticket_id' value='" . $row['ticket_id'] . "' /><input type='submit' value='View Details' /></form></td>";
+				echo "<td style='color: black;'>
+						<form action='ticketView.php' method='GET'>
+							<input type='hidden' id='ticket_id' name='ticket_id' value='" . $row['ticket_id'] . "' />
+							<input type='submit' value='View Details' />
+						</form>
+					  </td>";
 			echo "</tr>";
 		}
 		echo "</table>";
