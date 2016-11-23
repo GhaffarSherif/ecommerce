@@ -64,7 +64,7 @@
 							<td class="labelcell">Reputation: </td>
 							<td></td>
 							<td class="inputcell2">
-							<?php //getRepuation($_GET['userp']); 
+							<?php getRepuation($_GET['userp']); 
 							?>
 							</td>
 						</tr>
