@@ -27,7 +27,7 @@
     </article>
     <footer>
         <div id="footer" class="dfooter">
-            Copyright 2015 Evil Corp
+            Copyright 2016 GameExchange
         </div>
     </footer>
     <script src="lib/jquery.js"></script>

@@ -36,7 +36,7 @@
 		
 		if(isset($_POST["confirm"])){
 			if(checkBalance($total, $DBH)){
-				addTransaction($cart, $DBH);
+				addTransaction($total, $cart, $DBH);
 			}
 			else{
 				echo '<script language="javascript">';
@@ -57,7 +57,7 @@
 		return $total <= $balance["current_balance"];
 	}
 	
-	function addTransaction($cart, $DBH){
+	function addTransaction($total, $cart, $DBH){
 		$STH = $DBH->prepare("	INSERT INTO orders (order_id, user_id, order_date, order_total, status)
 								VALUES (NULL, '" . $_SESSION["user"] . "', '" . date('Y-m-d') . "',
 								'$total', '9')");
@@ -65,25 +65,23 @@
 		
 		foreach($cart as $item){
 			$STH = $DBH->prepare("	INSERT INTO order_item (order_id, product_id)
-									VALUES (NULL, LAST_INSERT_ID(), '" . $item["listing_id"] . "')");
+									VALUES (LAST_INSERT_ID(), '" . $item . "')");
 			$STH->execute();
 		}
+		
+		$STH = $DBH->query("SELECT LAST_INSERT_ID()");
+		$lastInsertId = $STH->fetch(PDO::FETCH_NUM);
+		$lastInsertId = $lastInsertId[0];
+		
+		$STH = $DBH->prepare("	INSERT INTO transaction (ID, user_id, order_id, transaction_method, amount)
+								VALUES (NULL, '" . $_SESSION["user"] . "', '$lastInsertId', '1', '$total')");
+		$STH->execute();
+		
+		clearCart();
 	}
 	
-	function removeItem($itemID){
-		//Remove slashes that are escaping quotes
-		if(get_magic_quotes_gpc() == true){
-			foreach($_COOKIE as $key){
-				$_COOKIE[$key] = stripslashes($value);
-			}
-		}
-		$cart = json_decode($_COOKIE["cart"], true); //Return to a regular array
-		
-		//Search for the value of the item id then remove it (if found)
-		if(($key = array_search($itemID, $cart)) !== false)
-			unset($cart[$key]);
-		
-		$json_cart = json_encode($cart); //Turn the cart to JSON
-		setcookie("cart", $json_cart, time() + (86400 * 30), "/"); //Insert the cookie
+	function clearCart(){
+		setcookie("cart","", time()-3600);
+		unset($_COOKIE["cart"]);
 	}
 ?>
