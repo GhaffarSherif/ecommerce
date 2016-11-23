@@ -85,9 +85,6 @@
 							// Alerting user that registering was successful!
 							echo '<script language="javascript">alert("Registeration Successful!");</script>';
 						}
-						else{
-							echo "Form has been incorrectly filled out!";
-						}
 					?>
 				</div>
 				<p>

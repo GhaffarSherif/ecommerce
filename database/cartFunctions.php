@@ -43,32 +43,13 @@
 									<tr style='color: white;'><td>USER</td><td>Reputation</td></tr>
 									<tr style='color: white;'><td><a href='user.php?userp=" . $uid . "'>" . $rowuname["username"] . "</a></td>
 									<td>" . $rep["count(feedback)"] . "</td></tr>
-									<tr style='color: white;'><td colspan='2'>
-										<form action='' method='POST'>
-											<input type='hidden' id='report' name='report' value='' />
-											<input type='submit' name='edit' onclick='promptMessage()' value='Report Listing' />
-										</form>
-										
-										<script language='javascript'>
-											promptMessage = function (){
-												if(confirm('Are you sure you want to report this listing?')){
-													var message = document.getElementById('report');
-													message.value = prompt('Please enter a reason');
-												}
-											}
-										</script>
-									</td></tr>
 								</table>
 							</td>
 						</tr>
+						<tr>
+							
+						</tr>
 					</table>";
-		}
-		
-		if(isset($_POST["report"])){
-			reportListing($_POST["report"], $_SESSION["user"], $row, $DBH);
-			echo '<script language="javascript">';
-			echo 'alert("A ticket has been submitted!");';
-			echo '</script>';
 		}
 		
 		return $row;
@@ -79,18 +60,5 @@
 					<input type='hidden' id='listing_id' name='listing_id' value='" . $row['listing_id'] . "' />
 					<input type='submit' value='Add to Cart'/>
 				</form>";
-	}
-	
-	function reportListing($reason, $user, $row, $DBH){
-		//Get the ID of PENDING status
-		$STHpending = $DBH->prepare("SELECT id FROM status WHERE name='PENDING'");
-		$STHpending->execute();
-		$rowpending = $STHpending->fetch();
-		
-		//Insert the ticket
-		$STH = $DBH->prepare("	INSERT INTO ticket (ticket_id, sender_id, listing_id, verified_by, description, status)
-								VALUES (NULL, '" . $user . "', '" . $row["listing_id"] . "', NULL,
-								'" . $reason . "', '" . $rowpending["id"] . "')");
-		$STH->execute();
 	}
 ?>
