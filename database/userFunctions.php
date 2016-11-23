@@ -29,7 +29,7 @@
 	}
 	function getUserReputation($userp){
 		$DBH = initializeDb();
-		$STH = $DBH->query("SELECT * FROM repuatation WHERE user_id='$userp'");
+		$STH = $DBH->query("SELECT * FROM reputation WHERE user_id='$userp'");
 		return $STH;
 	}
 	
@@ -61,11 +61,13 @@
 	//retrive repuation of user
 	function getRepuation($userp){
 		$STH = getUserReputation($userp);
-		$count = 0;
-		while ($row = $STH->fetch()){
-			$count = $count +1;
+		$counter = 0;
+		$row = $STH->fetch();
+		while (is_numeric($row['feedback'])){
+			$counter = $counter + $row['feedback'];
+			$row = $STH->fetch();
 		} 
-		echo $count;
+		echo $counter;
 	}
 	// Retrive address from user
 	function getAddress($userp){
@@ -86,4 +88,24 @@
 		echo $row["total"];
 	}
 	
+	// A user upvotes another user
+	function upvoteUser($SESSION, $GET){
+		
+	}
+	
+	// A user downvote another user
+	function downvoteUser($SESSION, $GET){
+		
+	}
+	
+	// User can only send one rep. ever  
+	function isOnlyOneRep($SESSION, $GET){
+		$visitor_id = $SESSION['user'];
+		$user_id = $GET['userp'];
+		
+		$DBH = initializeDb();
+		$STH = $DBH->query("SELECT * FROM reputation WHERE reviewer_id='$visitor_id' AND user_id='$user_id'");
+		$row = $STH->fetch();
+		
+	}
 ?>
