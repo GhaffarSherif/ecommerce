@@ -15,15 +15,15 @@
 		</div>
 	</header>
     <article>
-		<div class="main">
-			<div class="pure-u-3-4 dpanel">
-				<?php
-					require "database/databaseTools.php";
-					require "database/cartFunctions.php";
-					$DBH = loginToDatabase();
-				?>
-			</div>
-		</div>
+		<?php
+			require "database/databaseTools.php";
+			require "database/cartFunctions.php";
+			$DBH = loginToDatabase();
+			createCart($DBH);
+		?>
+		<form action='checkout.php' method='POST'>
+			<input type='submit' value='Purchase'/>
+		</form>
     </article>
     <footer>
         <div id="footer" class="dfooter">

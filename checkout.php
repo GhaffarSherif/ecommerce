@@ -1,3 +1,14 @@
+<?php
+	session_start();
+	if(!(isset($_SESSION["user"]))){
+		echo '<script language="javascript">';
+		echo 'alert("Please log in or register before checking out!");';
+		echo '</script>';
+		
+		echo "<script>setTimeout(\"location.href = './login.php';\",0);</script>";
+		exit();
+	}
+?>
 <html>
 <head>
  	<title>GameExchange</title>
@@ -8,10 +19,10 @@
 	<link rel="stylesheet" type="text/css" href="styles/default.css">
 </head>
 <body>
-    <div id="doverlay"></div>
-    <header>
+	<div id="doverlay"></div>
+	<header>
 		<div id="dmenu" class="dmenu pure-g">
-			<?php session_start(); require "scripts/createMenuBar.php"; createMenu($_SESSION); ?>
+			<?php require "scripts/createMenuBar.php"; createMenu($_SESSION); ?>
 		</div>
 	</header>
     <article>
@@ -19,16 +30,24 @@
 			<div class="pure-u-3-4 dpanel">
 				<?php
 					require "database/databaseTools.php";
-					require "database/productFunctions.php";
+					require "database/checkoutFunctions.php";
 					
 					$DBH = loginToDatabase();
-					$row = getProductDetails($_GET, $DBH);
+					
+					showCart($DBH);
 				?>
+				<form method='POST'>
+					<input type="hidden" id="confirm" name="confirm" value="" />
+					<input type="submit" name="edit" onclick="promptMessage()" value="Confirm" />
+				</form>
+				
+				<script language="javascript">
+					promptMessage = function () {
+						confirm('Are you sure you want to purchase everything in the cart?');
+					}
+				</script>
 			</div>
 		</div>
-		<?php
-			createBuyButton($row);
-		?>
     </article>
     <footer>
         <div id="footer" class="dfooter">
