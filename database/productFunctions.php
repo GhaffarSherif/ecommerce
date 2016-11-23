@@ -24,7 +24,7 @@
 			$STHrep->execute();
 			$rep = $STHrep->fetch();
 			
-			echo "	<table cellspacing='10' style='color: white;'>
+			echo "	<table cellspacing='10' style='color: white;' align='center'>
 						<tr>
 							<td colspan='3' align='center'>" . $row["product_name"] . "</td>
 						</tr>

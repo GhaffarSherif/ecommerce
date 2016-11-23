@@ -12,7 +12,7 @@
 		}
 		
 		//Start building the table
-		echo "<table border='1' style='border-style: solid; border-width: medium;'><tr>";
+		echo "<table border='1' style='border-style: solid; border-width: medium;' align='center'><tr>";
 		echo "<th>Image</td><th>Posted By</th><th>Product Name</th><th>Category</th><th>Price</th><th>Condition</th><th>List Date</th><th>Link</th></tr>";
 		while($row = $STH->fetch()){
 			//Save the user id, and category id in variables
