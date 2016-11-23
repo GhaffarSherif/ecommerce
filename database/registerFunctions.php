@@ -17,8 +17,8 @@
 								VALUES (NULL, '$user', '$pass', '$fname', '$lname', '$email',
 								'$address', '$phone'," . $status->fetch()["ID"] . ")");
 			$STH->execute();
-			$STH = $DBH->prepare("INSERT INTO balance (user_id, current_balance, total)
-								VALUES (LAST_INSERT_ID(), 0, 0)");
+			$STH = $DBH->prepare("INSERT INTO balance (user_id, current_balance)
+								VALUES (LAST_INSERT_ID(), 0)");
 			$STH->execute();
 		}
 	}

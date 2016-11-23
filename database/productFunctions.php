@@ -1,5 +1,6 @@
 <?php
 	function getProductDetails($GET, $DBH){
+		//Get listing data
 		$STH = $DBH->prepare("SELECT * FROM listing WHERE listing_id='" . $GET['listing_id'] . "'");
 		$STH->execute();
 		$row = $STH->fetch();
@@ -24,26 +25,32 @@
 			$STHrep->execute();
 			$rep = $STHrep->fetch();
 			
-			echo "	<table cellspacing='10' style='color: white;' align='center'>
+			//Create the table
+			echo "	<table cellspacing='10' style='color: #e5edb8;' align='center'>
 						<tr>
-							<td colspan='3' align='center'>" . $row["product_name"] . "</td>
+							<td colspan='5' align='center'>" . $row["product_name"] . "</td>
 						</tr>
 						<tr>
 							<td rowspan='3'><img width='250px' height='250px' src='img/" . $rowcname["name"] . ".png' /></td>
+							<td rowspan='3'>&nbsp;</td>
 							<td valign='top'>
 								<table cellspacing='10'>
-									<tr style='color: white;'><td valign='top'>Description:</td><td valign='top'>" . $row["product_description"] . "</td></tr>
-									<tr style='color: white;'><td valign='top'>Price:</td><td valign='top'>$" . $row["price"] . "</td></tr>
-									<tr style='color: white;'><td valign='top'>Condition:</td><td valign='top'>" . $row["item_condition"] . "</td></tr>
-									<tr style='color: white;'><td valign='top'>Date Listed:</td><td valign='top'>" . $row["list_date"] . "</td></tr>
+									<tr style='color: #e5edb8;'><td valign='top'>Description:</td><td>&nbsp;</td><td valign='top'>" . $row["product_description"] . "</td></tr>
+									<tr style='color: #e5edb8;'><td valign='top'>Price:</td><td>&nbsp;</td><td valign='top'>$" . $row["price"] . "</td></tr>
+									<tr style='color: #e5edb8;'><td valign='top'>Condition:</td><td>&nbsp;</td><td valign='top'>" . $row["item_condition"] . "</td></tr>
+									<tr style='color: #e5edb8;'><td valign='top'>Date Listed:</td><td>&nbsp;</td><td valign='top'>" . $row["list_date"] . "</td></tr>
 								</table>
 							</td>
+							<td rowspan='3'>&nbsp;</td>
 							<td rowspan='3' valign='top'>
+							
 								<table border='1' style='border-style: solid; border-width: medium;'>
-									<tr style='color: white;'><td>USER</td><td>Reputation</td></tr>
-									<tr style='color: white;'><td><a href='user.php?userp=" . $uid . "'>" . $rowuname["username"] . "</a></td>
-									<td>" . $rep["count(feedback)"] . "</td></tr>
-									<tr style='color: white;'><td colspan='2'>
+									<tr style='color: #e5edb8;'><td>USER</td><td>Reputation</td></tr>
+									<tr style='color: #e5edb8;'><td><a href='user.php?userp=" . $uid . "'>" . $rowuname["username"] . "</a></td>
+									<td align='right'>" . $rep["count(feedback)"] . "</td></tr>
+									
+									<tr style='color: #300018;'><td colspan='2'>
+										<br />
 										<form action='' method='POST'>
 											<input type='hidden' id='report' name='report' value='' />
 											<input type='submit' name='edit' onclick='promptMessage()' value='Report Listing' />
@@ -59,11 +66,13 @@
 										</script>
 									</td></tr>
 								</table>
+								
 							</td>
 						</tr>
 					</table>";
 		}
 		
+		//Check if a report has been submitted
 		if(isset($_POST["report"])){
 			reportListing($_POST["report"], $_SESSION["user"], $row, $DBH);
 			echo '<script language="javascript">';
@@ -71,11 +80,19 @@
 			echo '</script>';
 		}
 		
+		//Check if the add to cart button has been pressed
+		if(isset($_POST["listing_id"])){
+			addToCart();
+			echo '<script language="javascript">';
+			echo 'alert("Item has been added to the cart!");';
+			echo '</script>';
+		}
+		
 		return $row;
 	}
 	
 	function createBuyButton($row){
-		echo "	<form action='cart.php' method='POST'>
+		echo "	<form action='' method='POST'>
 					<input type='hidden' id='listing_id' name='listing_id' value='" . $row['listing_id'] . "' />
 					<input type='submit' value='Add to Cart'/>
 				</form>";
@@ -92,5 +109,28 @@
 								VALUES (NULL, '" . $user . "', '" . $row["listing_id"] . "', NULL,
 								'" . $reason . "', '" . $rowpending["id"] . "')");
 		$STH->execute();
+	}
+	
+	function addToCart(){
+		//Check if there already is a cart
+		if(isset($_COOKIE["cart"])){
+			//Remove slashes that are escaping quotes
+			if(get_magic_quotes_gpc() == true){
+				foreach($_COOKIE as $key){
+					$_COOKIE[$key] = stripslashes($value);
+				}
+			}
+			$cart = json_decode($_COOKIE["cart"], true); //Return to a regular array
+			array_push($cart, $_POST["listing_id"]); //Add the new item
+			$json_cart = json_encode($cart); //Turn the cart to JSON
+			setcookie("cart", $json_cart, time() + (86400 * 30), "/"); //Insert the cookie
+
+		}
+		else{
+			$cart = array(); //Create an array
+			array_push($cart, $_POST["listing_id"]); //Add the new item
+			$json_cart = json_encode($cart); //Turn the cart to JSON
+			setcookie("cart", $json_cart, time() + (86400 * 30), "/"); //Insert the cookie
+		}
 	}
 ?>
