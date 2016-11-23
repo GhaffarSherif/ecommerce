@@ -58,21 +58,43 @@
 	}
 	
 	function addTransaction($total, $cart, $DBH){
+		//Insert into orders
 		$STH = $DBH->prepare("	INSERT INTO orders (order_id, user_id, order_date, order_total, status)
 								VALUES (NULL, '" . $_SESSION["user"] . "', '" . date('Y-m-d') . "',
 								'$total', '9')");
 		$STH->execute();
 		
+		//Insert into order_items
 		foreach($cart as $item){
 			$STH = $DBH->prepare("	INSERT INTO order_item (order_id, product_id)
 									VALUES (LAST_INSERT_ID(), '" . $item . "')");
 			$STH->execute();
+			
+			//Update seller's balance
+			$STH = $DBH->prepare("	UPDATE balance
+									SET current_balance = current_balance + (SELECT price from listing WHERE listing_id = '$item')
+									WHERE user_id=(SELECT user_id from listing WHERE listing_id = '$item')");
+			$STH->execute();
+			
+			//Update the listing's status
+			$STH = $DBH->prepare("	UPDATE listing
+									SET status = 8
+									WHERE listing_id='$item'");
+			$STH->execute();
 		}
 		
+		//Update buyer's balance
+		$STH = $DBH->prepare("	UPDATE balance
+								SET current_balance = current_balance - $total
+								WHERE user_id=" . $_SESSION["user"]);
+		$STH->execute();
+		
+		//Get last_insert_id
 		$STH = $DBH->query("SELECT LAST_INSERT_ID()");
 		$lastInsertId = $STH->fetch(PDO::FETCH_NUM);
 		$lastInsertId = $lastInsertId[0];
 		
+		//Insert into transaction
 		$STH = $DBH->prepare("	INSERT INTO transaction (ID, user_id, order_id, transaction_method, amount)
 								VALUES (NULL, '" . $_SESSION["user"] . "', '$lastInsertId', '1', '$total')");
 		$STH->execute();

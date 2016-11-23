@@ -21,14 +21,16 @@
 			$DBH = loginToDatabase();
 			createCart($DBH);
 		?>
+		<?php if(isset($_COOKIE["cart"])){ ?>
 		<form action='checkout.php' method='POST'>
 			<input type='submit' value='Purchase'/>
 		</form>
+		<?php } ?>
     </article>
     <footer>
-        <div id="footer" class="dfooter">
-            Copyright 2016 GameExchange
-        </div>
+		<div id='footer' class='dfooter'>
+			Copyright 2016 GameExchange
+		</div>
     </footer>
     <script src="lib/jquery.js"></script>
     <script defer="defer" src="scripts/menu.js"></script>
