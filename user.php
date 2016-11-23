@@ -179,14 +179,10 @@
 				<div class="pure-u-1-2 dpanel">
 					<div>
 						<legend text-align="center">Manage Your Listings:</legend>
-						<table align="center">
-							
-						</table>
+						<?php  displayAllUserListings($_SESSION)?>
 					</div>
 				</div>
-			<p>
-				<input type="submit"  name="listingBtn" value="Confirm" />
-			</p>
+			
 		</form>
 	</article>
 	
@@ -199,9 +195,6 @@
 						<?php displayUserOrders($_SESSION); ?>
 					</div>
 				</div>
-			<p>
-				<input type="submit" name="ordersBtn" value="Confirm" />
-			</p>
 		</form>
 	</article>
 	

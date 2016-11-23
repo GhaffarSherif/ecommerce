@@ -49,15 +49,16 @@
      <script defer="defer" src="scripts/footer.js"></script>
 	 <?php 
 		// If user submits, then validate user input!
-		if(isset($_POST["refund"]))
+		if(isset($_POST["refund"]) && !isRefunded($_GET))
 		{
+			// Refund the user's order
+			refundOrder($_SESSION["user"], $_GET); 
 			// Alerting user that change was successful!
 			echo '<script language="javascript">';
-			echo 'alert("Upvoted user!");';
+			echo 'alert("Purchase Refunded!");';
 			echo '</script>';
 		}
 	 ?>
-	 
 	
  </body>
  </html>

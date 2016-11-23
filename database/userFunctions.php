@@ -243,7 +243,7 @@
 			
 			
 			//Put all the information into individual table cells
-				echo "<tr>";
+				echo "<tr align='center'>";
 				echo "<td>" . $count . "</td>";
 				echo "<td>" . $rowpname["product_name"] . "</td>";
 				echo "<td>" . $rowcname["price"] . "</td>";
@@ -251,6 +251,105 @@
 				
 				
 				$count++;
+		}
+		echo "</table>";
+	}
+	// Refund the order of the user
+	function refundOrder($userId, $GET){
+		$order_id = $GET['order_id'];
+		// Logging into the db
+		$DBH = initializeDb();
+		
+		// Retriving order that wants to be refunded
+		$STH = $DBH->query("SELECT order_total FROM orders WHERE order_id='$order_id'");
+		$STH->execute();
+		
+		$row = $STH->fetch();
+		$refundAmount = $row['order_total'];
+		
+		// Changing the status of the Order to Refunded!
+		$STH = $DBH->prepare("UPDATE orders SET status = 5  WHERE order_id = $order_id");
+		$STH->execute();
+		
+		// Adding Refund to balance
+		$STH = $DBH->prepare("UPDATE balance SET current_balance = current_balance + '$refundAmount' WHERE user_id=$userId");
+		$STH->execute();
+		
+		
+		
+	}
+	
+	// Checking if the purchase is already refunded!
+	function isRefunded($GET){
+		$order_id = $GET['order_id'];
+		// Logging into the db
+		$DBH = initializeDb();
+		
+		// Changing the status of the Order to Refunded!
+		// Retriving order that wants to be refunded
+		$STH = $DBH->query("SELECT status FROM orders WHERE order_id='$order_id'");
+		$STH->execute();
+		
+		$row = $STH->fetch();
+		
+		if ($row['status'] == 1)
+			return TRUE;
+		
+		else{
+			echo '<script language="javascript">';
+			echo 'alert("Purchase Already Refunded!");';
+			echo '</script>';
+			
+			return FALSE;
+		}
+		
+	}
+	
+	// Displaying all use Listings in a table
+	function displayAllUserListings($SESSION){
+		$givenId = $SESSION['user'];
+		
+		// Logging into the db
+		$DBH = initializeAdminDb();
+		
+		// Retriving all Lisitng details for user
+		$STH = $DBH->prepare("SELECT * FROM listing WHERE user_id ='$givenId'");
+		$STH->execute();
+		
+		//Start building the table
+		echo "<table border='1' style='border-style: solid; border-width: medium;' align='center'><tr style='color: #e5edb8;'>";
+		echo "<th>Product Name</th><th>Category</th><th>Price</th><th>Condition</th><th>List Date</th><th>Modify</th></tr>";
+		while($row = $STH->fetch()){
+			//Save the user id, and category id in variables
+			$uid = $row["user_id"];
+			$cid = $row["category"];
+			
+			//Get the username
+			$STHuname = $DBH->prepare("SELECT username FROM user WHERE user_id=" . $uid);
+			$STHuname->execute();
+			$rowuname = $STHuname->fetch();
+			
+			//Get the category name
+			$STHcname = $DBH->prepare("SELECT name FROM category WHERE id=" . $cid);
+			$STHcname->execute();
+			$rowcname = $STHcname->fetch();
+			
+			
+			
+			//Put all the information into individual table cells
+			echo "<tr style='color: #e5edb8;'>";
+			echo "<td align='center'>" . $row["product_name"] . "</td>";
+			echo "<td align='center'>" . $rowcname["name"] . "</td>"; 
+			echo "<td align='center'>$" . $row["price"] . "</td>";
+			echo "<td align='center'>" . $row["item_condition"] . "</td>";
+			echo "<td align='center'>" . $row["list_date"] . "</td>";
+			echo "	<td align='center'>
+						<form action='product.php' method='GET'>
+							<input type='hidden' id='id' name='id' value='" . $row['listing_id'] . "' />
+							<input style='color: #300018;' type='submit' value='Edit'/>
+						</form>
+					</td>";
+			echo "</tr>";
 		}
 		echo "</table>";
 	}
