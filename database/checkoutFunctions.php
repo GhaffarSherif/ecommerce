@@ -35,7 +35,7 @@
 		echo "</table></div></div>";
 		
 		if(isset($_POST["confirm"])){
-			if(checkBalance($total, $DBH)){
+			if(checkBalance($total, $DBH) && checkListingStatuses($DBH)){
 				addTransaction($total, $cart, $DBH);
 			}
 			else{
@@ -100,6 +100,19 @@
 		$STH->execute();
 		
 		clearCart();
+	}
+	
+	function addTransaction($total, $cart, $DBH){
+		foreach($cart as $item){
+			$STH = $DBH->prepare("SELECT status FROM listing WHERE listing_id=$item");
+			$STH->execute();
+			$status = $STH->fetch();
+			
+			if($status != 7)
+				return false;
+		}
+		
+		return true;
 	}
 	
 	function clearCart(){
