@@ -3,9 +3,14 @@
 	session_start();
 	// adding the file I need
 		include './database/userFunctions.php';
+		
 	if (!isset($_GET['order_id'])){
 		echo "<script>alert('No order id selected'); setTimeout(\"location.href = './index.php';\",0);</script>";
 		exit();	
+	}
+	if (!orderBelongsToUser($_GET, $_SESSION)){
+		echo "<script>alert('Listing does not belong to you!'); setTimeout(\"location.href = './index.php';\",0);</script>";
+		exit();
 	}
  ?>
  

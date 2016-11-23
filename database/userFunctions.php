@@ -221,7 +221,7 @@
 		$STH->execute();
 		
 		//Start building the table
-		echo "<table border='1' align='center' style='border-style: solid; border-width: medium;'><tr>";
+		echo "<table border='1'  align='center' style='border-style: solid; border-width: medium;'><tr>";
 		echo "<th>#</th><th>Product Name</th><th>Price</th></tr>";
 		
 		$count = 1;
@@ -352,5 +352,24 @@
 			echo "</tr>";
 		}
 		echo "</table>";
+	}
+	
+	// Checking if the order ID belongs to user or not
+	function orderBelongsToUser($GET, $SESSION){
+		$givenId = $SESSION['user'];
+		$orderId = $GET['order_id'];
+		
+		// Logging into the db
+		$DBH = initializeDb();
+		// Retriving all ticket details
+		$STH = $DBH->query("SELECT order_id FROM orders WHERE user_id ='$givenId'");
+		$STH->execute();
+		
+		while ($row = $STH->fetch()){
+			if ($row['order_id'] == $orderId)
+				return TRUE;
+			
+		}
+		return FALSE;
 	}
 ?>
