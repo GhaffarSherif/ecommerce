@@ -1,5 +1,5 @@
 <?php
-	function createCart($DBH){
+	function showCart($DBH){
 		if(isset($_POST["remove"])){
 			removeItem($_POST["remove"]);
 		}
@@ -18,7 +18,7 @@
 		//Start building the table
 		echo "<table border='1' style='border-style: solid; border-width: medium;' align='center'><tr style='color: #e5edb8;'>";
 		echo "<th>Product Name</th><th>Price</th><th>Remove</th></tr>";
-		$total = 0;
+		
 		//Create a table entry for each item in the cart
 		foreach($cart as $item){
 			$STH = $DBH->prepare("SELECT * FROM listing WHERE listing_id='" . $item . "'");
@@ -29,18 +29,10 @@
 				echo "<tr style='color: #e5edb8;'>";
 				echo "<td>" . $row["product_name"] . "</td>";
 				echo "<td>$" . $row["price"] . "</td>";
-				echo "	<td>
-							<form action='' method='POST'>
-								<input type='hidden' id='remove' name='remove' value='" . $row['listing_id'] . "' />
-								<input style='color: #300018;' type='submit' value='Remove'/>
-							</form>
-						</td>";
 				echo "</tr>";
-				$total = $total + $row["price"];
 			}
 		}
 		//Close the table
-		echo "<tr style='color: #e5edb8;'><td>Total:</td><td>$$total</td><td></td></tr>";
 		echo "</table></div></div>";
 	}
 	
