@@ -40,13 +40,3 @@
     <script defer="defer" src="scripts/footer.js"></script>
 </body>
 </html>
-
-<?php
-	//If a report has been issued, submit the report
-	/*if(isset($_POST["report"])){
-		reportListing($_POST["report"], $_SESSION["user"], $row, $DBH);
-		echo '<script language="javascript">';
-		echo 'alert("A ticket has been submitted!");';
-		echo '</script>';
-	}*/
-?>
