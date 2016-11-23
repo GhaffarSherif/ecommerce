@@ -28,7 +28,7 @@
 			</table>
 		</form>
 		<div class="main">
-			<div class="pure-u-3-4 dpanel">
+			<div class="pure-u-1-3 dpanel">
 				
 				<?php
 					require "database/databaseTools.php";

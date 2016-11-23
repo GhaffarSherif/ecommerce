@@ -47,7 +47,7 @@
 								<table border='1' style='border-style: solid; border-width: medium;'>
 									<tr style='color: #e5edb8;'><td>USER</td><td>Reputation</td></tr>
 									<tr style='color: #e5edb8;'><td><a href='user.php?userp=" . $uid . "'>" . $rowuname["username"] . "</a></td>
-									<td align='right'>" . $rep["count(feedback)"] . "</td></tr>
+									<td align='right'>" . getRepuation($uid) . "</td></tr>
 									
 									<tr style='color: #300018;'><td colspan='2'>
 										<br />
@@ -132,5 +132,22 @@
 			$json_cart = json_encode($cart); //Turn the cart to JSON
 			setcookie("cart", $json_cart, time() + (86400 * 30), "/"); //Insert the cookie
 		}
+	}
+	
+	function getRepuation($userid){
+		$STH = getUserReputation($userid);
+		$counter = 0;
+		$row = $STH->fetch();
+		while (is_numeric($row['feedback'])){
+			$counter = $counter + $row['feedback'];
+			$row = $STH->fetch();
+		} 
+		return $counter;
+	}
+	
+	function getUserReputation($userid){
+		$DBH = initializeDb();
+		$STH = $DBH->query("SELECT * FROM reputation WHERE user_id='$userid'");
+		return $STH;
 	}
 ?>
