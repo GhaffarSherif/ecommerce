@@ -184,7 +184,7 @@
 		$STH->execute();
 		
 		//Start building the table
-		echo "<table border='1' align='center' style='border-style: solid; border-width: medium;'><tr>";
+		echo "<table border='1' style='border-style: solid; border-width: medium;' align='center'><tr style='color: #e5edb8;'>";
 		echo "<th>Order #</th><th>Date</th><th>Total</th><th>Status</th><th>View Details</th></tr>";
 		while($row = $STH->fetch()){
 			//Save the status id into category
@@ -221,7 +221,7 @@
 		$STH->execute();
 		
 		//Start building the table
-		echo "<table border='1'  align='center' style='border-style: solid; border-width: medium;'><tr>";
+		echo "<table border='1' style='border-style: solid; border-width: medium;' align='center'><tr style='color: #e5edb8;'>";
 		echo "<th>#</th><th>Product Name</th><th>Price</th></tr>";
 		
 		$count = 1;
@@ -268,7 +268,7 @@
 		$refundAmount = $row['order_total'];
 		
 		// Changing the status of the Order to Refunded!
-		$STH = $DBH->prepare("UPDATE orders SET status = 5  WHERE order_id = $order_id");
+		$STH = $DBH->prepare("UPDATE orders SET status = 14  WHERE order_id = $order_id");
 		$STH->execute();
 		
 		// Adding Refund to balance
@@ -292,7 +292,7 @@
 		
 		$row = $STH->fetch();
 		
-		if ($row['status'] == 1)
+		if ($row['status'] == 14)
 			return TRUE;
 		
 		else{
@@ -344,8 +344,8 @@
 			echo "<td align='center'>" . $row["item_condition"] . "</td>";
 			echo "<td align='center'>" . $row["list_date"] . "</td>";
 			echo "	<td align='center'>
-						<form action='product.php' method='GET'>
-							<input type='hidden' id='id' name='id' value='" . $row['listing_id'] . "' />
+						<form action='modifyListing.php' method='GET'>
+							<input type='hidden' id='listing_id' name='listing_id' value='" . $row['listing_id'] . "' />
 							<input style='color: #300018;' type='submit' value='Edit'/>
 						</form>
 					</td>";
@@ -372,4 +372,8 @@
 		}
 		return FALSE;
 	}
+	
+	
+	
+	
 ?>

@@ -33,39 +33,40 @@
 					<legend text-align="center">User Information</legend>
 					<table align="center">
 						<tr id="dtable-item1">
-							<td class="labelcell" style="margin-bottom: 5%">Username: </td>
+							<td class="labelcell" style="margin-bottom: 5%"><h2>Username:</h2> </td>
 							<td></td>
-							<td class="inputcell2">
-							<?php getUsername($_GET['userp']);?>
+							<td class="inputcell2"><h2>
+							<?php getUsername($_GET['userp']);?></h2>
 							</td>
 						</tr>
 						<tr id="dtable-item2">
-							<td class="labelcell">First Name: </td>
+							<td class="labelcell"><h2>First Name:></h2> </td>
 							<td></td>
 							<td class="inputcell2">
-							<?php getFname($_GET['userp']); ?>
+							<h2><?php getFname($_GET['userp']); ?> </h2>
 							</td>
 						</tr>
 						<tr id="dtable-item2">
-							<td class="labelcell">Last Name: </td>
+							<td class="labelcell"><h2>Last Name:</h2> </td>
 							<td> </td>
 							<td class="inputcell2">
-							<?php getLname($_GET['userp']); ?>
+							<h2><?php getLname($_GET['userp']); ?></h2>
+							
 							</td>
 						</tr>
 						<tr id="dtable-item2">
-							<td class="labelcell">Email: </td>
+							<td class="labelcell"><h2>Email:</h2> </td>
 							<td></td>
 							<td class="inputcell2">
-							<?php getEmail($_GET['userp']); ?>
+							<h2><?php getEmail($_GET['userp']); ?></h2>
 							</td>
 						</tr>
 						<tr id="dtable-item2">
-							<td class="labelcell">Reputation: </td>
+							<td class="labelcell"><h2>Reputation:</h2> </td>
 							<td></td>
 							<td class="inputcell2">
-							<?php getRepuation($_GET['userp']); 
-							?>
+							<h2><?php getRepuation($_GET['userp']); ?></h2>
+							
 							</td>
 						</tr>
 						
@@ -75,24 +76,24 @@
 						?>
 						
 						<tr id="dtable-item2">
-							<td class="labelcell">Address: </td>
+							<td class="labelcell"><h2>Address:</h2> </td>
 							<td></td>
 							<td class="inputcell2">
-							<?php getAddress($_GET['userp']); ?>
+							<h2><?php getAddress($_GET['userp']); ?></h2>
 							</td>
 						</tr>
 						<tr id="dtable-item2">
-							<td class="labelcell">Phone Number: </td>
+							<td class="labelcell"><h2>Phone Number:</h2> </td>
 							<td></td>
 							<td class="inputcell2">
-							<?php getPhone($_GET['userp']); ?>
+							<h2><?php getPhone($_GET['userp']); ?></h2>
 							</td>
 						</tr>
 						<tr id="dtable-item2">
-							<td class="labelcell">Balance: </td>
+							<td class="labelcell"><h2>Balance:</h2> </td>
 							<td></td>
 							<td class="inputcell2">
-							<?php getBalance($_GET['userp']); ?>
+							<h2><?php getBalance($_GET['userp']); ?></h2>
 							</td>
 						</tr>	
 						<?php 
@@ -129,37 +130,37 @@
 						<table align="center">
 							
 							<tr id="dtable-item2">
-								<td class="labelcell">First Name:</td>
+								<td class="labelcell"><h2>First Name:</h2></td>
 								<td class="inputcell2">
 								<input name="fname" size="25" style="width: 75%;" />
 								</td>
 							</tr>
 							<tr id="dtable-item2">
-								<td class="labelcell">Last Name:</td>
+								<td class="labelcell"><h2>Last Name:</h2></td>
 								<td class="inputcell2">
 								<input name="lname" type="text" size="25" style="width: 75%;" />
 								</td>
 							</tr>
 							<tr id="dtable-item2">
-								<td class="labelcell">Email:</td>
+								<td class="labelcell"><h2>Email:</h2></td>
 								<td class="inputcell2">
 								<input name="email" type="text" size="25" style="width: 75%;" />
 								</td>
 							</tr>
 							<tr id="dtable-item2">
-								<td class="labelcell">Address:</td>
+								<td class="labelcell"><h2>Address:</h2></td>
 								<td class="inputcell2">
 								<input name="address" type="text" size="25" style="width: 75%;" />
 								</td>
 							</tr>
 							<tr id="dtable-item2">
-								<td class="labelcell">Phone Number:</td>
+								<td class="labelcell"><h2>Phone Number:</h2></td>
 								<td class="inputcell2">
 								<input name="phone_num" type="text" size="25" style="width: 75%;" />
 								</td>
 							</tr>
 							<tr id="dtable-item2">
-								<td class="labelcell">Withdraw Balance:</td>
+								<td class="labelcell"><h2>Withdraw Balance:</h2></td>
 								<td class="inputcell2">
 								<input name="wbalance" type="text" size="25" style="width: 75%;" />
 								</td>
