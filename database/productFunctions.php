@@ -1,7 +1,7 @@
 <?php
 	function getProductDetails($GET, $DBH){
 		//Get listing data
-		$STH = $DBH->prepare("SELECT * FROM listing WHERE listing_id='" . $GET['listing_id'] . "'");
+		$STH = $DBH->prepare("SELECT * FROM listing WHERE listing_id='" . $GET['id'] . "'");
 		$STH->execute();
 		$row = $STH->fetch();
 		
