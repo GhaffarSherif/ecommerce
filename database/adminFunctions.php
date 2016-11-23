@@ -142,7 +142,7 @@
 		
 		//Start building the table
 		echo "<table border='1' align='center' style='border-style: solid; border-width: medium;'><tr>";
-		echo "<th>Ticket ID</td><th>Sender</th><th>Listing ID</th><th>Verified By</th><th>Status</th><th>View Details</th></tr>";
+		echo "<th>Ticket ID</th><th>Sender</th><th>Listing ID</th><th>Verified By</th><th>Status</th><th>View Details</th></tr>";
 		while($row = $STH->fetch()){
 			//Save the user id, and category id in variables
 			$uid = $row["sender_id"];

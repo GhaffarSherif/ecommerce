@@ -20,10 +20,6 @@
 
  	<title>GameExchange</title>
   
- 	<meta name="description" content="Project for E-commerece class">
-	<meta name="keywords" content="HTML,CSS,XML,JavaScript">
-	<meta name="author" content="Sherif Ghaffar, Lucas Kourouklis">
-
 	<link rel="stylesheet" type="text/css" href="lib/pure-min.css">
 	<link rel="stylesheet" type="text/css" href="lib/grids-responsive-min.css">
 	<link rel="stylesheet" type="text/css" href="styles/default.css">
@@ -151,7 +147,7 @@
 
         <footer>
          <div id="footer" class="dfooter">
-             Copyright 2015 Evil Corp
+             Copyright 2016 GameExchange
          </div>
      </footer>
      <script src="lib/jquery.js"></script>
@@ -191,7 +187,5 @@
 			echo '</script>';
 		}
 	 ?>
-	 
-	 
  </body>
  </html>

@@ -1,18 +1,10 @@
- <?php
+  <?php
 	//starting session
 	session_start();
 	// adding the file I need
-		include './database/adminFunctions.php';
-	if (!isAdmin($_SESSION)){
-		echo '<script language="javascript">';
-		echo 'alert("NOT admin!");';
-		echo '</script>';
-		
-		echo "<script>setTimeout(\"location.href = './index.php';\",0);</script>";
-		exit();	
-	}
-	else if (!isset($_GET['ticket_id'])){
-		echo "<script>setTimeout(\"location.href = './ticketView.php?ticket_id=1';\",0);</script>";
+		include './database/userFunctions.php';
+	if (!isset($_GET['order_id'])){
+		echo "<script>alert('No order id selected'); setTimeout(\"location.href = './index.php';\",0);</script>";
 		exit();	
 	}
  ?>
@@ -20,7 +12,6 @@
  <html>
  <head>
  	<title>GameExchange</title>
-	
 	<link rel="stylesheet" type="text/css" href="lib/pure-min.css">
 	<link rel="stylesheet" type="text/css" href="lib/grids-responsive-min.css">
 	<link rel="stylesheet" type="text/css" href="styles/default.css">
@@ -36,13 +27,16 @@
 		<div>
 			<div class="pure-u-1-2 dpanel">
 				<div>
-					<legend> Ticket Details For Ticket ID = <?php echo $_GET['ticket_id'] ?></legend>
+					<legend> Order Details For order ID #<?php echo $_GET['order_id'] ?></legend>
 					
-					<p> <?php dispalyTicketDetails($_GET['ticket_id']) ?></p>
+					<p> <?php displayUserOrderDetail($_GET['order_id']) ?></p>
 				</div>
 			</div>
 		</div>
-		<p><input onClick="location.href = 'admin.php'" type="button" value="Back" /></p>
+		<p><form action"" method="post"> <input onClick="location.href = 'user.php'" type="button" value="Back" />
+		
+		<input name="refund" type="submit" value="Refund" /></form></p>
+		
     </article>
 	
         <footer>
@@ -53,6 +47,16 @@
      <script src="lib/jquery.js"></script>
      <script defer="defer" src="scripts/menu.js"></script>
      <script defer="defer" src="scripts/footer.js"></script>
+	 <?php 
+		// If user submits, then validate user input!
+		if(isset($_POST["refund"]))
+		{
+			// Alerting user that change was successful!
+			echo '<script language="javascript">';
+			echo 'alert("Upvoted user!");';
+			echo '</script>';
+		}
+	 ?>
 	 
 	
  </body>

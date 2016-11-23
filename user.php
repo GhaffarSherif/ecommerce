@@ -31,7 +31,7 @@
 			<div class="pure-u-1-2 dpanel">
 				<div>
 					<legend text-align="center">User Information</legend>
-					<table align="left">
+					<table align="center">
 						<tr id="dtable-item1">
 							<td class="labelcell" style="margin-bottom: 5%">Username: </td>
 							<td></td>
@@ -48,7 +48,7 @@
 						</tr>
 						<tr id="dtable-item2">
 							<td class="labelcell">Last Name: </td>
-							<td></td>
+							<td> </td>
 							<td class="inputcell2">
 							<?php getLname($_GET['userp']); ?>
 							</td>
@@ -109,10 +109,12 @@
 		if ( $_GET['userp']  != $_SESSION['user']){
 		?>
 		<article>
+		<form method="post" action="" >
 			<div>
-				<input value="Upvote User" name="upvote" type="button">
-				<input value="Downvote User" name="downvote" type="button">
+				<input value="Upvote User" class="upvote" name="upvote" type="submit">
+				<input value="Downvote User" class="downvote" name="downvote" type="submit">
 			</div>
+		</form"
 		</article>
 		<?php
 		}
@@ -153,7 +155,7 @@
 							<tr id="dtable-item2">
 								<td class="labelcell">Phone Number:</td>
 								<td class="inputcell2">
-								<input name="phone" type="text" size="25" style="width: 75%;" />
+								<input name="phone_num" type="text" size="25" style="width: 75%;" />
 								</td>
 							</tr>
 							<tr id="dtable-item2">
@@ -183,7 +185,7 @@
 					</div>
 				</div>
 			<p>
-				<input type="submit" class="modify" name="modify" value="Confirm" />
+				<input type="submit"  name="listingBtn" value="Confirm" />
 			</p>
 		</form>
 	</article>
@@ -194,22 +196,58 @@
 				<div class="pure-u-1-2 dpanel">
 					<div>
 						<legend text-align="center">View/Modify Your Orders</legend>
-						<table align="center">
-							
-						</table>
+						<?php displayUserOrders($_SESSION); ?>
 					</div>
 				</div>
 			<p>
-				<input type="submit" class="modify" name="modify" value="Confirm" />
+				<input type="submit" name="ordersBtn" value="Confirm" />
 			</p>
 		</form>
 	</article>
 	
-	<?php } ?>
+	<?php } 
+		// If user submits, then validate user input!
+		if(isset($_POST["upvote"]))
+		{
+			// DO some SQL add repuation for user
+			upvoteUser($_SESSION, $_GET);
+			// Alerting user that change was successful!
+			echo '<script language="javascript">';
+			echo 'alert("Upvoted user!");';
+			echo '</script>';
+			
+		}
+		
+		// If user submits, then validate user input!
+		if(isset($_POST["downvote"]))
+		{
+			// DO some SQL INSERT to add product to DATABASE!
+			downvoteUser($_SESSION, $_GET);
+			// Alerting user that change was successful!
+			echo '<script language="javascript">';
+			echo 'alert("downvoted user!");';
+			echo '</script>';
+			
+			
+		}
+		
+		// if modify button is pressed then modify page
+		if(isset($_POST["modify"]))
+		{
+			// DO some SQL INSERT to add product to DATABASE!
+			if (modifyInformation($_POST, $_SESSION['user'])){
+				
+			// Alerting user that change was successful!
+			echo '<script language="javascript">';
+			echo 'alert("Information Modified!!");';
+			echo '</script>';
+			}
+		}
+	?>
 
         <footer>
          <div id="footer" class="dfooter">
-             Copyright 2015 Evil Corp
+             Copyright 2016 GameExchange
          </div>
      </footer>
      <script src="lib/jquery.js"></script>

@@ -55,7 +55,7 @@
 								<select name="category">
 								  <option value="2">Cd's (Games)</option>
 								  <option value="3">Consoles</option>
-								  <option value="4">Perepherals</option>
+								  <option value="4">Peripherals </option>
 								  <option value="1">Trading Cards</option>
 								</select>
 								</td>
@@ -88,7 +88,7 @@
 
         <footer>
          <div id="footer" class="dfooter">
-             Copyright 2015 Evil Corp
+             Copyright 2016 GameExchange
          </div>
      </footer>
      <script src="lib/jquery.js"></script>
