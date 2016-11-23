@@ -161,7 +161,7 @@
 			
 			
 			//Put all the information into individual table cells
-			echo "<tr>";
+			echo "<tr align='center'>";
 				echo "<td>" . $row["ticket_id"] . "</td>";
 				echo "<td>" . $rowuname["username"] . "</td>";
 				echo "<td>" . $row["listing_id"] . "</td>";

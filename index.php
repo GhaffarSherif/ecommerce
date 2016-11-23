@@ -17,7 +17,7 @@
 		<div id="main">
 			<div class="pure-u-1-2 dpanel">
 				<div>
-					<legend><img src='./img/logo.png' ></legend>
+					<legend><img src='./img/logo.png' style="width:322px;height:322px;"></legend>
 					<p> Welcome to GameExchange! A project developed by Sherif Ghaffar and Lucas Kourouklis !</p>
 					<img src='./img/1.gif' style="width:128px;height:128px;" >
 					<h2>Top Deals of The Week --</h2>

@@ -199,7 +199,7 @@
 			
 			
 			//Put all the information into individual table cells
-				echo "<tr>";
+			echo "<tr align='center'>";
 				echo "<td>" . $row["order_id"] . "</td>";
 				echo "<td>" . $row["order_date"] . "</td>";
 				echo "<td>" . $row["order_total"] . "</td>";
