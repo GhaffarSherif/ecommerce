@@ -47,7 +47,7 @@
 								<table border='1' style='border-style: solid; border-width: medium;'>
 									<tr style='color: #e5edb8;'><td>USER</td><td>Reputation</td></tr>
 									<tr style='color: #e5edb8;'><td><a href='user.php?userp=" . $uid . "'>" . $rowuname["username"] . "</a></td>
-									<td align='right'>" . getRepuation($uid) . "</td></tr>
+									<td align='right'>" . getRepuation($uid, $DBH) . "</td></tr>
 									
 									<tr style='color: #300018;'><td colspan='2'>
 										<br />
@@ -134,8 +134,8 @@
 		}
 	}
 	
-	function getRepuation($userid){
-		$STH = getUserReputation($userid);
+	function getRepuation($userid, $DBH){
+		$STH = getUserReputation($userid, $DBH);
 		$counter = 0;
 		$row = $STH->fetch();
 		while (is_numeric($row['feedback'])){
@@ -145,8 +145,7 @@
 		return $counter;
 	}
 	
-	function getUserReputation($userid){
-		$DBH = initializeDb();
+	function getUserReputation($userid, $DBH){
 		$STH = $DBH->query("SELECT * FROM reputation WHERE user_id='$userid'");
 		return $STH;
 	}

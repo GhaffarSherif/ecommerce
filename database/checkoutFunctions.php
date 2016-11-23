@@ -35,8 +35,18 @@
 		echo "</table></div></div>";
 		
 		if(isset($_POST["confirm"])){
-			if(checkBalance($total, $DBH) && checkListingStatuses($DBH)){
-				addTransaction($total, $cart, $DBH);
+			if(checkBalance($total, $DBH)){
+				if(checkListingStatuses($cart, $DBH)){
+					addTransaction($total, $cart, $DBH);
+				}
+				else{
+					echo '<script language="javascript">';
+					echo 'alert("Invalid product in cart! Please remove it before continuing");';
+					echo '</script>';
+				
+					echo "<script>setTimeout(\"location.href = './cart.php';\",0);</script>";
+					exit();
+				}
 			}
 			else{
 				echo '<script language="javascript">';
@@ -102,7 +112,7 @@
 		clearCart();
 	}
 	
-	function addTransaction($total, $cart, $DBH){
+	function checkListingStatuses($cart, $DBH){
 		foreach($cart as $item){
 			$STH = $DBH->prepare("SELECT status FROM listing WHERE listing_id=$item");
 			$STH->execute();
