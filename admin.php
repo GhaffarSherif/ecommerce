@@ -102,47 +102,44 @@
 	</article>
 	
 	<article>
-		<form method="post" action="">
-			<h1>Manage Tickets</h1>
-				<div class="pure-u-3-4 dpanel">
-					<div>
-						<legend >View Tickets</legend>
-						<?php 
-							displayAllTickets();
-						?>
-					</div>
-					<br/>
-					<legend>Change Ticket Status</legend>
-					<table align="center">
-							
-							<tr id="dtable-item2">
-								<td style="color: #e5edb8" class="labelcell">Ticket ID:</td>
-								<td class="inputcell2">
-								<input type="text" name="ticketId" >
-								</td>
-							</tr>
-							<tr id="dtable-item2">
-								<td  style="color: #e5edb8" class="labelcell">Status:</td>
-								<td class="inputcell2">
-								<select name="tStatus">
-								  <option value="1">OPEN</option>
-								  <option value="2">CLOSED</option>
-								  <option value="3">PENDING</option>
-								</select>
-								</td>
-							</tr>
-							<tr id="dtable-item2">
-								<td style="color: #e5edb8" class="labelcell">Verified By:</td>
-								<td class="inputcell2">
-								<input type="text" name="verifiedBy" >
-								</td>
-							</tr>
-						</table>
+		<h1>Manage Tickets</h1>
+			<div class="pure-u-3-4 dpanel">
+				<div>
+					<legend >View Tickets</legend>
+					<?php 
+						displayAllTickets();
+					?>
 				</div>
-			<p>
-				<input type="submit" name="ticketStatus" class="ticketStatus" value="Confirm" />
-			</p>
-		</form>
+				<br/>
+				<legend>Change Ticket Status</legend>
+				<table align="center">
+					<tr id="dtable-item2">
+						<td style="color: #e5edb8" class="labelcell">Ticket ID:</td>
+						<td class="inputcell2">
+						<input type="text" name="ticketId" >
+						</td>
+					</tr>
+					<tr id="dtable-item2">
+						<td  style="color: #e5edb8" class="labelcell">Status:</td>
+						<td class="inputcell2">
+						<select name="tStatus">
+						  <option value="1">OPEN</option>
+						  <option value="2">CLOSED</option>
+						  <option value="3">PENDING</option>
+						</select>
+						</td>
+					</tr>
+					<tr id="dtable-item2">
+						<td style="color: #e5edb8" class="labelcell">Verified By:</td>
+						<td class="inputcell2">
+						<input type="text" name="verifiedBy" >
+						</td>
+					</tr>
+				</table>
+			</div>
+		<p>
+			<input type="submit" name="ticketStatus" class="ticketStatus" value="Confirm" />
+		</p>
 	</article>
 
         <footer>

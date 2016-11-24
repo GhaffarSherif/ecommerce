@@ -115,7 +115,7 @@
 				<input value="Upvote User" class="upvote" name="upvote" type="submit">
 				<input value="Downvote User" class="downvote" name="downvote" type="submit">
 			</div>
-		</form"
+		</form>
 		</article>
 		<?php
 		}
@@ -175,28 +175,24 @@
 	</article>
 	
 	<article>
-		<form method="post" action="">
-			<h1>Your Listings</h1>
-				<div class="pure-u-1-2 dpanel">
-					<div>
-						<legend text-align="center">Manage Your Listings:</legend>
-						<?php  displayAllUserListings($_SESSION)?>
-					</div>
-				</div>
+		<h1>Your Listings</h1>
+		<div class="pure-u-1-2 dpanel">
+			<div>
+				<legend text-align="center">Manage Your Listings:</legend>
+				<?php  displayAllUserListings($_SESSION)?>
+			</div>
+		</div>
 			
-		</form>
 	</article>
 	
 	<article>
-		<form method="post" action="">
-			<h1>Your Orders</h1>
-				<div class="pure-u-1-2 dpanel">
-					<div>
-						<legend text-align="center">View/Modify Your Orders</legend>
-						<?php displayUserOrders($_SESSION); ?>
-					</div>
-				</div>
-		</form>
+		<h1>Your Orders</h1>
+		<div class="pure-u-1-2 dpanel">
+			<div>
+				<legend text-align="center">View/Modify Your Orders</legend>
+				<?php displayUserOrders($_SESSION); ?>
+			</div>
+		</div>
 	</article>
 	
 	<?php } 
