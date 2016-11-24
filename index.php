@@ -19,7 +19,7 @@
 				<div>
 					<img src='./img/logo.png' style="width:322px;height:322px;">
 					<p> Welcome to GameExchange! An E-Commerce project developed by Sherif Ghaffar and Lucas Kourouklis !</p>
-					<img src='./img/1.gif' style="width:128px;height:128px;" >
+					<!--<img src='./img/1.gif' style="width:128px;height:128px;" >-->
 					<h2></h2>
 				</div>
 			</div>

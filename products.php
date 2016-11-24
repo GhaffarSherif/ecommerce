@@ -29,7 +29,6 @@
 		</form>
 		<div class="main">
 			<div class="pure-u-1-3 dpanel">
-				
 				<?php
 					require "database/databaseTools.php";
 					require "database/productsFunctions.php";

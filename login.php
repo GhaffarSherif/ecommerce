@@ -17,19 +17,19 @@
 	<article>
 		<form id="form2" method="post" action="">
 			<div id="main">
-				<h1>Sign In</h1>
+				<h1 style='color: #e5edb8;'>Sign In</h1>
 					<div class="pure-u-1-2 dpanel">
 						<div>
 							<legend>Enter your information</legend>
 							<form action='' method='POST'>
-								<table>
-									<tr id="dtable-item1">
+								<table align="center">
+									<tr style='color: #e5edb8;' id="dtable-item1">
 										<td class="labelcell" style="margin-bottom: 5%">Username <span style="color: red">*</span></td>
 										<td class="inputcell2">
 										<input name="username" size="25" style="width: 75%;" />
 										</td>
 									</tr>
-									<tr id="dtable-item2">
+									<tr style='color: #e5edb8;' id="dtable-item2">
 										<td class="labelcell">Password <span style="color: red">*</span></td>
 										<td class="inputcell2">
 										<input type="password" name="password" size="25" style="width: 75%;" />

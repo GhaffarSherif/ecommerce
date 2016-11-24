@@ -16,17 +16,20 @@
 			echo $e->getMessage();
 		}
 	}
+	
 	function getUserInfo($userp){
 		$DBH = initializeDb();
 		$STH = $DBH->query("SELECT * FROM user WHERE user_id='$userp'");
 		return $STH->fetch();
 		
 	}
+	
 	function getUserBalance($userp){
 		$DBH = initializeDb();
 		$STH = $DBH->query("SELECT * FROM balance WHERE user_id='$userp'");
 		return $STH->fetch();
 	}
+	
 	function getUserReputation($userp){
 		$DBH = initializeDb();
 		$STH = $DBH->query("SELECT * FROM reputation WHERE user_id='$userp'");
@@ -96,7 +99,6 @@
 			return FALSE;
 		else 
 			return TRUE;
-		
 	}
 	
 	// A user upvotes another use 
@@ -174,11 +176,12 @@
 			return FALSE;
 		}
 	}
+	
 	// Show a user his orders
 	function displayUserOrders($SESSION){
 		$givenId = $SESSION['user'];
 		// Logging into the db
-		$DBH = initializeAdminDb();
+		$DBH = initializeDb();
 		// Retriving all ticket details
 		$STH = $DBH->prepare("SELECT * FROM orders WHERE user_id ='$givenId'");
 		$STH->execute();
@@ -190,13 +193,10 @@
 			//Save the status id into category
 			$sid = $row["status"];
 			
-			
 			//Get the status name
 			$STHsname = $DBH->prepare("SELECT name FROM status WHERE id=" . $sid);
 			$STHsname->execute();
 			$rowsname = $STHsname->fetch();
-			
-			
 			
 			//Put all the information into individual table cells
 			echo "<tr style='color: #e5edb8;' align='center'>";
@@ -215,7 +215,6 @@
 		// Logging into the db
 		$DBH = initializeDb();
 		
-		
 		// Retriving all order_items that correspond to the use
 		$STH = $DBH->query("SELECT * FROM order_item WHERE order_id='$id'");
 		$STH->execute();
@@ -229,7 +228,6 @@
 			//Save the status id into category
 			$pid = $row["product_id"];
 			
-			
 			//Get the status name
 			$STHpname = $DBH->prepare("SELECT product_name FROM listing WHERE listing_id=" . $pid);
 			$STHpname->execute();
@@ -240,20 +238,18 @@
 			$STHcname->execute();
 			$rowcname = $STHcname->fetch();
 			
-			
-			
 			//Put all the information into individual table cells
-				echo "<tr align='center'>";
-				echo "<td>" . $count . "</td>";
-				echo "<td>" . $rowpname["product_name"] . "</td>";
-				echo "<td>" . $rowcname["price"] . "</td>";
-				echo "</tr>";
-				
-				
-				$count++;
+			echo "<tr align='center'>";
+			echo "<td>" . $count . "</td>";
+			echo "<td>" . $rowpname["product_name"] . "</td>";
+			echo "<td>" . $rowcname["price"] . "</td>";
+			echo "</tr>";
+			
+			$count++;
 		}
 		echo "</table>";
 	}
+	
 	// Refund the order of the user
 	function refundOrder($userId, $GET){
 		$order_id = $GET['order_id'];
@@ -274,9 +270,6 @@
 		// Adding Refund to balance
 		$STH = $DBH->prepare("UPDATE balance SET current_balance = current_balance + '$refundAmount' WHERE user_id=$userId");
 		$STH->execute();
-		
-		
-		
 	}
 	
 	// Checking if the purchase is already refunded!
@@ -302,7 +295,6 @@
 			
 			return FALSE;
 		}
-		
 	}
 	
 	// Displaying all use Listings in a table
@@ -320,21 +312,13 @@
 		echo "<table border='1' style='border-style: solid; border-width: medium;' align='center'><tr style='color: #e5edb8;'>";
 		echo "<th>Product Name</th><th>Category</th><th>Price</th><th>Condition</th><th>List Date</th><th>Modify</th></tr>";
 		while($row = $STH->fetch()){
-			//Save the user id, and category id in variables
-			$uid = $row["user_id"];
+			//Save the category id in variables
 			$cid = $row["category"];
-			
-			//Get the username
-			$STHuname = $DBH->prepare("SELECT username FROM user WHERE user_id=" . $uid);
-			$STHuname->execute();
-			$rowuname = $STHuname->fetch();
 			
 			//Get the category name
 			$STHcname = $DBH->prepare("SELECT name FROM category WHERE id=" . $cid);
 			$STHcname->execute();
 			$rowcname = $STHcname->fetch();
-			
-			
 			
 			//Put all the information into individual table cells
 			echo "<tr style='color: #e5edb8;'>";
@@ -372,8 +356,4 @@
 		}
 		return FALSE;
 	}
-	
-	
-	
-	
 ?>

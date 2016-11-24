@@ -16,55 +16,55 @@
 	<article>
 		<form id="form2" method="post" action="">
 			<div id="main">
-				<h1>Register</h1>
+				<h1 style='color: #e5edb8;'>Register</h1>
 				<div class="pure-u-1-2 dpanel">
 					<div>
 						<legend>Enter your information</legend>
 						<table align="center">
 							<tr id="dtable-item1">
-								<td class="labelcell" style="margin-bottom: 5%">Username<span style="color: red">*</span></td>
+								<td style='color: #e5edb8;' class="labelcell" style="margin-bottom: 5%">Username<span style="color: red">*</span></td>
 								<td class="inputcell2">
 								<input name="username" size="25" style="width: 75%;" />
 								</td>
 							</tr>
 							<tr id="dtable-item2">
-								<td class="labelcell">Password<span style="color: red">*</span></td>
+								<td style='color: #e5edb8;' class="labelcell">Password<span style="color: red">*</span></td>
 								<td class="inputcell2">
 								<input name="password" type="password" size="25" style="width: 75%;" />
 								</td>
 							</tr>
 							<tr id="dtable-item2">
-								<td class="labelcell">Confirm Password<span style="color: red">*</span></td>
+								<td style='color: #e5edb8;' class="labelcell">Confirm Password<span style="color: red">*</span></td>
 								<td class="inputcell2">
 								<input name="cpassword" type="password" size="25" style="width: 75%;" />
 								</td>
 							</tr>
 							<tr id="dtable-item2">
-								<td class="labelcell">First Name<span style="color: red">*</span></td>
+								<td style='color: #e5edb8;' class="labelcell">First Name<span style="color: red">*</span></td>
 								<td class="inputcell2">
 								<input name="fname" type="text" size="25" style="width: 75%;" />
 								</td>
 							</tr>
 							<tr id="dtable-item2">
-								<td class="labelcell">Last Name<span style="color: red">*</span></td>
+								<td style='color: #e5edb8;' class="labelcell">Last Name<span style="color: red">*</span></td>
 								<td class="inputcell2">
 								<input name="lname" type="text" size="25" style="width: 75%;" />
 								</td>
 							</tr>
 							<tr id="dtable-item2">
-								<td class="labelcell">Email<span style="color: red">*</span></td>
+								<td style='color: #e5edb8;' class="labelcell">Email<span style="color: red">*</span></td>
 								<td class="inputcell2">
 								<input name="email" type="text" size="25" style="width: 75%;" />
 								</td>
 							</tr>
 							<tr id="dtable-item2">
-								<td class="labelcell">Address<span style="color: red">*</span></td>
+								<td style='color: #e5edb8;' class="labelcell">Address<span style="color: red">*</span></td>
 								<td class="inputcell2">
 								<input name="address" type="text" size="25" style="width: 75%;" />
 								</td>
 							</tr>
 							<tr id="dtable-item2">
-								<td class="labelcell">Phone<span style="color: red">*</span></td>
+								<td style='color: #e5edb8;' class="labelcell">Phone<span style="color: red">*</span></td>
 								<td class="inputcell2">
 								<input name="phone" type="text" size="25" style="width: 75%;" />
 								</td>
