@@ -72,8 +72,6 @@
 					</table>";
 		}
 		
-		print_r($_COOKIE);
-		
 		//Check if a report has been submitted
 		if(isset($_POST["report"])){
 			reportListing($_POST["report"], $_SESSION["user"], $row, $DBH);
