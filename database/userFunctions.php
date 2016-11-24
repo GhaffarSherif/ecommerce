@@ -239,10 +239,10 @@
 			$rowcname = $STHcname->fetch();
 			
 			//Put all the information into individual table cells
-			echo "<tr align='center'>";
+			echo "<tr style='color: #e5edb8;' align='center'>";
 			echo "<td>" . $count . "</td>";
 			echo "<td>" . $rowpname["product_name"] . "</td>";
-			echo "<td>" . $rowcname["price"] . "</td>";
+			echo "<td>$" . $rowcname["price"] . "</td>";
 			echo "</tr>";
 			
 			$count++;

@@ -93,7 +93,7 @@
 							<td style="color: #e5edb8" class="labelcell"><h2>Balance:</h2> </td>
 							<td></td>
 							<td style="color: #e5edb8" class="inputcell2">
-							<h2><?php getBalance($_GET['userp']); ?></h2>
+							<h2>$<?php getBalance($_GET['userp']); ?></h2>
 							</td>
 						</tr>	
 						<?php 

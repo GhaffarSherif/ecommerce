@@ -55,8 +55,8 @@
 									<select name="uStatus">
 									  <option value="5">BAN</option>
 									  <option value="6">LOCK</option>
-									  <option value="12">User</option>
-									  <option value="13">Admin</option>
+									  <option value="12">USER</option>
+									  <option value="13">ADMIN</option>
 									</select>
 									</td>
 								</tr>
