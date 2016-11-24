@@ -23,14 +23,14 @@
 							<legend>Enter your information</legend>
 							<form action='' method='POST'>
 								<table align="center">
-									<tr style='color: #e5edb8;' id="dtable-item1">
-										<td class="labelcell" style="margin-bottom: 5%">Username <span style="color: red">*</span></td>
+									<tr id="dtable-item1">
+										<td style='color: #e5edb8;' class="labelcell" style="margin-bottom: 5%">Username <span style="color: red">*</span></td>
 										<td class="inputcell2">
 										<input name="username" size="25" style="width: 75%;" />
 										</td>
 									</tr>
-									<tr style='color: #e5edb8;' id="dtable-item2">
-										<td class="labelcell">Password <span style="color: red">*</span></td>
+									<tr id="dtable-item2">
+										<td style='color: #e5edb8;' class="labelcell">Password <span style="color: red">*</span></td>
 										<td class="inputcell2">
 										<input type="password" name="password" size="25" style="width: 75%;" />
 										</td>
