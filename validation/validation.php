@@ -81,11 +81,11 @@
 	
 	// Checking that the username fields are valid!
 	function adminUserVal($POST){
-		$username = $POST['username'];
+		$user_id = $POST['user_id'];
 		
-		if (empty($username)){
+		if(!is_numeric($user_id)){
 			 echo '<script language="javascript">';
-			 echo 'alert("Please fill username ID")';
+			 echo 'alert("Please select a username")';
 			 echo '</script>';
 			return FALSE;
 		}
@@ -93,13 +93,13 @@
 			return TRUE;
 	}
 	
-	// Checking that the username fields are valid!
+	// Checking that the listing fields are valid!
 	function adminListVal($POST){
 		$listId = $POST['listId'];
 		
-		if (empty($listId)){
+		if(!is_numeric($listId)){
 			 echo '<script language="javascript">';
-			 echo 'alert("Please fill Listing ID")';
+			 echo 'alert("Please select a Listing ID")';
 			 echo '</script>';
 			return FALSE;	
 		}
@@ -107,21 +107,27 @@
 			return TRUE;
 	}
 	
-	// Checking that the username fields are valid!
+	// Checking that the ticket fields are valid!
 	function adminTicketVal($POST){
 		$ticketId = $POST['ticketId'];
+		$statusId = $POST['tStatus'];
 		$verifiedBy = $POST['verifiedBy'];
 		
-		if (empty($ticketId) || empty($verifiedBy)){
+		if(!is_numeric($ticketId)){
 			 echo '<script language="javascript">';
-			 echo 'alert("Please fill ticket ID field")';
+			 echo 'alert("Please select a Ticket ID")';
 			 echo '</script>';
 			return FALSE;
 		}
-		else if(!is_numeric($ticketId) || $ticketId <= 0)
-		{
-			echo '<script language="javascript">';
-			 echo 'alert("Ticket ID is not numeric or negative!")';
+		if(!is_numeric($statusId)){
+			 echo '<script language="javascript">';
+			 echo 'alert("Please select a Status ID")';
+			 echo '</script>';
+			return FALSE;
+		}
+		if(empty($verifiedBy)){
+			 echo '<script language="javascript">';
+			 echo 'alert("Please fill the Verified By field")';
 			 echo '</script>';
 			return FALSE;
 		}

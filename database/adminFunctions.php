@@ -18,16 +18,15 @@
 	}
 	
 	// Admin can ban or lock accounts or grant them admin privilege or demote
-	function updateUserStatus($POST ){
+	function updateUserStatus($POST){
 		$DBH = initializeAdminDb();
 		
-		$username = $POST["username"];
+		$user_id = $POST["user_id"];
 		$uStatus = $POST["uStatus"];
-		
 		
 		$STH = $DBH->prepare("UPDATE user 
 			SET status='$uStatus'
-			WHERE username='$username';");
+			WHERE user_id='$user_id';");
 		$STH->execute();
 		
 	}
@@ -81,53 +80,6 @@
 		}
 		else{
 			return FALSE;
-		}
-	}
-	
-	// Checking if the ticket with given id exists
-	function ticketExists($POST){
-		$DBH = initializeAdminDb();
-		$ticketId = $POST['ticketId'];
-		
-		$STH = $DBH->query("SELECT * FROM ticket WHERE ticket_id='$ticketId'");
-		$row = $STH->fetch();
-		
-		if ($row['ticket_id'] == null){
-			return FALSE;
-		}
-		else{
-			return TRUE;
-		}
-	}
-	// Checks if the listing with given id exists
-	function listingExists($POST){
-		$DBH = initializeAdminDb();
-		$listId = $POST['listId'];
-		
-		$STH = $DBH->query("SELECT * FROM listing WHERE listing_id='$listId'");
-		$row = $STH->fetch();
-		
-		if ($row['listing_id'] == null){
-			return FALSE;
-		}
-		else{
-			return TRUE;
-		}
-	}
-	
-	// Checks if username exists in the database
-	function usernameExists($POST){
-		$DBH = initializeAdminDb();
-		$username = $POST['username'];
-		
-		$STH = $DBH->query("SELECT * FROM user WHERE username='$username'");
-		$row = $STH->fetch();
-		
-		if ($row['username'] == null){
-			return FALSE;
-		}
-		else{
-			return TRUE;
 		}
 	}
 	
