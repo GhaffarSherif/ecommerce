@@ -1,8 +1,3 @@
-<?php
-	require "database/databaseTools.php";
-	require "database/cartFunctions.php";
-	removeItem();
-?>
 <html>
 <head>
  	<title>GameExchange</title>
@@ -21,6 +16,10 @@
 	</header>
     <article>
 		<?php
+			require "database/databaseTools.php";
+			require "database/cartFunctions.php";
+			removeItem();
+			
 			$DBH = loginToDatabase();
 			createCart($DBH);
 			if(isset($_COOKIE["cart"])){
