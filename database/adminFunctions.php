@@ -39,7 +39,6 @@
 		$listId = $POST["listId"];
 		$lStatus = $POST["lStatus"];
 		
-		
 		$STH = $DBH->prepare("UPDATE listing 
 			SET status='$lStatus'
 			WHERE listing_id='$listId';");
@@ -53,7 +52,6 @@
 		$ticketId = $POST["ticketId"];
 		$tStatus = $POST["tStatus"];
 		$verifiedBy= $POST["verifiedBy"];
-		
 		
 		$STH = $DBH->prepare("UPDATE ticket 
 			SET status='$tStatus'

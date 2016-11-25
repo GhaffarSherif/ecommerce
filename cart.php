@@ -19,6 +19,7 @@
 			require "database/databaseTools.php";
 			require "database/cartFunctions.php";
 			$DBH = loginToDatabase();
+			removeItem();
 			createCart($DBH);
 		?>
 		<?php if(isset($_COOKIE["cart"])){ ?>

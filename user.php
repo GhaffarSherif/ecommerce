@@ -16,7 +16,43 @@
 		
 		// Validating URL
 		userDisplayVal($_GET, $_SESSION);
+		// If user submits, then validate user input!
+		if(isset($_POST["upvote"]))
+		{
+			// DO some SQL add repuation for user
+			upvoteUser($_SESSION, $_GET);
+			// Alerting user that change was successful!
+			echo '<script language="javascript">';
+			echo 'alert("Upvoted user!");';
+			echo '</script>';
+			
+		}
 		
+		// If user submits, then validate user input!
+		if(isset($_POST["downvote"]))
+		{
+			// DO some SQL INSERT to add product to DATABASE!
+			downvoteUser($_SESSION, $_GET);
+			// Alerting user that change was successful!
+			echo '<script language="javascript">';
+			echo 'alert("downvoted user!");';
+			echo '</script>';
+			
+			
+		}
+		
+		// if modify button is pressed then modify page
+		if(isset($_POST["modify"]))
+		{
+			// DO some SQL INSERT to add product to DATABASE!
+			if (modifyInformation($_POST, $_SESSION['user'])){
+				
+			// Alerting user that change was successful!
+			echo '<script language="javascript">';
+			echo 'alert("Information Modified!!");';
+			echo '</script>';
+			}
+		}
 	?>
      <div id="doverlay"></div>
 	 <header>
@@ -195,45 +231,7 @@
 		</div>
 	</article>
 	
-	<?php } 
-		// If user submits, then validate user input!
-		if(isset($_POST["upvote"]))
-		{
-			// DO some SQL add repuation for user
-			upvoteUser($_SESSION, $_GET);
-			// Alerting user that change was successful!
-			echo '<script language="javascript">';
-			echo 'alert("Upvoted user!");';
-			echo '</script>';
-			
-		}
-		
-		// If user submits, then validate user input!
-		if(isset($_POST["downvote"]))
-		{
-			// DO some SQL INSERT to add product to DATABASE!
-			downvoteUser($_SESSION, $_GET);
-			// Alerting user that change was successful!
-			echo '<script language="javascript">';
-			echo 'alert("downvoted user!");';
-			echo '</script>';
-			
-			
-		}
-		
-		// if modify button is pressed then modify page
-		if(isset($_POST["modify"]))
-		{
-			// DO some SQL INSERT to add product to DATABASE!
-			if (modifyInformation($_POST, $_SESSION['user'])){
-				
-			// Alerting user that change was successful!
-			echo '<script language="javascript">';
-			echo 'alert("Information Modified!!");';
-			echo '</script>';
-			}
-		}
-	?>
+	<?php } ?>
 
         <footer>
          <div id="footer" class="dfooter">

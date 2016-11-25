@@ -100,10 +100,12 @@
 	}
 	
 	function createBuyButton($row){
-		echo "	<form action='' method='POST'>
-					<input type='hidden' id='listing_id' name='listing_id' value='" . $row['listing_id'] . "' />
-					<input type='submit' value='Add to Cart'/>
-				</form>";
+		if($row["status"] == 7){
+			echo "	<form action='' method='POST'>
+						<input type='hidden' id='listing_id' name='listing_id' value='" . $row['listing_id'] . "' />
+						<input type='submit' value='Add to Cart'/>
+					</form>";
+		}
 	}
 	
 	function reportListing($reason, $user, $row, $DBH){

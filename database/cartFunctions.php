@@ -1,9 +1,25 @@
 <?php
-	function createCart($DBH){
+	function removeItem(){//$itemID){
 		if(isset($_POST["remove"])){
-			removeItem($_POST["remove"]);
+			$itemID = $_POST["remove"];
+			//Remove slashes that are escaping quotes
+			if(get_magic_quotes_gpc() == true){
+				foreach($_COOKIE as $key){
+					$_COOKIE[$key] = stripslashes($value);
+				}
+			}
+			$cart = json_decode($_COOKIE["cart"], true); //Return to a regular array
+			
+			//Search for the value of the item id then remove it (if found)
+			if(($key = array_search($itemID, $cart)) !== false)
+				unset($cart[$key]);
+			
+			$json_cart = json_encode($cart); //Turn the cart to JSON
+			setcookie("cart", $json_cart, time() + (86400 * 30), "/"); //Insert the cookie
 		}
-		
+	}
+	
+	function createCart($DBH){
 		if(isset($_COOKIE["cart"])){
 			//Remove slashes that are escaping quotes
 			if(get_magic_quotes_gpc() == true){
@@ -52,22 +68,5 @@
 			echo "<script>setTimeout(\"location.href = './index.php';\",0);</script>";
 			exit();	
 		}
-	}
-	
-	function removeItem($itemID){
-		//Remove slashes that are escaping quotes
-		if(get_magic_quotes_gpc() == true){
-			foreach($_COOKIE as $key){
-				$_COOKIE[$key] = stripslashes($value);
-			}
-		}
-		$cart = json_decode($_COOKIE["cart"], true); //Return to a regular array
-		
-		//Search for the value of the item id then remove it (if found)
-		if(($key = array_search($itemID, $cart)) !== false)
-			unset($cart[$key]);
-		
-		$json_cart = json_encode($cart); //Turn the cart to JSON
-		setcookie("cart", $json_cart, time() + (86400 * 30), "/"); //Insert the cookie
 	}
 ?>

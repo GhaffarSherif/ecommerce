@@ -6,25 +6,22 @@
 	include './validation/validation.php';
 	
 	// Checking if user is admin or not!
-		if (!isAdmin($_SESSION)){
-			echo '<script language="javascript">';
-			echo 'alert("NOT admin!");';
-			echo '</script>';
-			
-			echo "<script>setTimeout(\"location.href = './index.php';\",0);</script>";
-			exit();	
-		}
+	if (!isAdmin($_SESSION)){
+		echo '<script language="javascript">';
+		echo 'alert("NOT admin!");';
+		echo '</script>';
+		
+		echo "<script>setTimeout(\"location.href = './index.php';\",0);</script>";
+		exit();	
+	}
  ?>
  <html>
  <head>
-
  	<title>GameExchange</title>
   
 	<link rel="stylesheet" type="text/css" href="lib/pure-min.css">
 	<link rel="stylesheet" type="text/css" href="lib/grids-responsive-min.css">
 	<link rel="stylesheet" type="text/css" href="styles/default.css">
-    
- 
  </head>
  <body>
 
@@ -46,20 +43,34 @@
 							<tr >
 								<td style="color: #e5edb8" style="margin-bottom: 5%">Username: </td>
 								<td class="inputcell2">
-								<input name="username" size="25" style="width: 75%;" />
+								<?php
+									require "database/databaseTools.php";
+									$DBH = loginToDatabase();
+									
+									//Get a list of all usernames and associated IDs
+									$STH = $DBH->query("SELECT user_id, username FROM user");
+									//Start building the select
+									echo "	<select name='username'>
+											<option>- Select a User -</option>";
+									while($row = $STH->fetch()){
+										echo "<option value='" . $row["id"] . "'>" . $row["username"] . "</option>";
+									}
+									echo "</select>";
+								?>
 								</td>
 							</tr>
 							<tr >
-									<td style="color: #e5edb8">User Status:</td>
-									<td class="inputcell2">
-									<select name="uStatus">
-									  <option value="5">BAN</option>
-									  <option value="6">LOCK</option>
-									  <option value="12">USER</option>
-									  <option value="13">ADMIN</option>
-									</select>
-									</td>
-								</tr>
+								<td style="color: #e5edb8">User Status:</td>
+								<td class="inputcell2">
+								<select name="uStatus">
+									<option>- Select a Status -</option>
+									<option value="5">BAN</option>
+									<option value="6">LOCK</option>
+									<option value="12">USER</option>
+									<option value="13">ADMIN</option>
+								</select>
+								</td>
+							</tr>
 						</table>
 					</div>
 				</div>
@@ -79,16 +90,27 @@
 							<tr >
 								<td style="color: #e5edb8" class="labelcell">Listing Id:</td>
 								<td class="inputcell2">
-								<input name="listId" size="25" style="width: 75%;" />
+								<?php
+									//Get a list of all usernames and associated IDs
+									$STH = $DBH->query("SELECT listing_id, product_name FROM listing");
+									//Start building the select
+									echo "	<select name='listId'>
+											<option>- Select a Listing -</option>";
+									while($row = $STH->fetch()){
+										echo "<option value='" . $row["listing_id"] . "'>" . $row["product_name"] . "</option>";
+									}
+									echo "</select>";
+								?>
 								</td>
 							</tr>
 							<tr >
 								<td style="color: #e5edb8" class="labelcell">Status:</td>
 								<td class="inputcell2">
 								<select name="lStatus">
-								  <option value="7">AVAILABLE</option>
-								  <option value="8">PURCHASED</option>
-								  <option value="6">LOCKED</option>
+									<option>- Select a Status -</option>
+									<option value="7">AVAILABLE</option>
+									<option value="8">PURCHASED</option>
+									<option value="6">LOCKED</option>
 								</select>
 								</td>
 							</tr>
@@ -103,7 +125,7 @@
 	
 	<article>
 		<h1>Manage Tickets</h1>
-			<div class="pure-u-3-4 dpanel">
+			<div class="pure-u-1-2 dpanel">
 				<div>
 					<legend >View Tickets</legend>
 					<?php 
@@ -116,16 +138,27 @@
 					<tr id="dtable-item2">
 						<td style="color: #e5edb8" class="labelcell">Ticket ID:</td>
 						<td class="inputcell2">
-						<input type="text" name="ticketId" >
+						<?php
+							//Get a list of all usernames and associated IDs
+							$STH = $DBH->query("SELECT ticket_id FROM ticket");
+							//Start building the select
+							echo "	<select name='ticketId'>
+									<option>- Select a Ticket -</option>";
+							while($row = $STH->fetch()){
+								echo "<option value='" . $row["ticket_id"] . "'>" . $row["ticket_id"] . "</option>";
+							}
+							echo "</select>";
+						?>
 						</td>
 					</tr>
 					<tr id="dtable-item2">
 						<td  style="color: #e5edb8" class="labelcell">Status:</td>
 						<td class="inputcell2">
 						<select name="tStatus">
-						  <option value="1">OPEN</option>
-						  <option value="2">CLOSED</option>
-						  <option value="3">PENDING</option>
+							<option>- Select a Status -</option>
+							<option value="1">OPEN</option>
+							<option value="2">CLOSED</option>
+							<option value="3">PENDING</option>
 						</select>
 						</td>
 					</tr>

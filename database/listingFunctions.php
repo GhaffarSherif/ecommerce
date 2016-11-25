@@ -16,6 +16,7 @@
 			echo $e->getMessage();
 		}
 	}
+	
 	// user_id, product_name, category, price, item_condition, product_description, list_date, status
 	function insertListing($POST, $SESSION){
 		$DBH = initializeListingDb();
@@ -34,6 +35,7 @@
 		VALUES ('$user_id', '$product_name', '$category', '$price', '$item_condition', '$product_description', '$list_date', '$status')");
 		$STH->execute();
 	}
+	
 	function getPostedListId($productName){
 		$DBH = initializeListingDb();
 		
@@ -42,6 +44,7 @@
 		$row = $STH->fetch();
 		return $row['listing_id'];
 	}
+	
 	//
 	function deleteUserListing($list_id){
 		$DBH = initializeListingDb();
@@ -52,7 +55,6 @@
 		$STH->execute();
 	}
 	
-	//
 	function updateListing($POST, $list_id){
 		$product_name = $POST["productName"];
 		$category = $POST["category"];
