@@ -1,3 +1,8 @@
+<?php
+	require "database/databaseTools.php";
+	require "database/cartFunctions.php";
+	removeItem();
+?>
 <html>
 <head>
  	<title>GameExchange</title>
@@ -16,17 +21,16 @@
 	</header>
     <article>
 		<?php
-			require "database/databaseTools.php";
-			require "database/cartFunctions.php";
 			$DBH = loginToDatabase();
-			removeItem();
 			createCart($DBH);
+			if(isset($_COOKIE["cart"])){
 		?>
-		<?php if(isset($_COOKIE["cart"])){ ?>
-		<form action='checkout.php' method='POST'>
-			<input type='submit' value='Purchase'/>
-		</form>
-		<?php } ?>
+			<form action='checkout.php' method='POST'>
+				<input type='submit' value='Purchase'/>
+			</form>
+		<?php
+			}
+		?>
     </article>
     <footer>
 		<div id='footer' class='dfooter'>

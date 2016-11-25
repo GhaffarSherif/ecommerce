@@ -1,4 +1,5 @@
 <?php
+	//Turns the data in the cookie into a table with all the items populating cells
 	function showCart($DBH){
 		if(isset($_POST["remove"])){
 			removeItem($_POST["remove"]);
@@ -66,6 +67,7 @@
 		}
 	}
 	
+	//Checks if the user has enough money to buy everything in the cart
 	function checkBalance($total, $DBH){
 		$STH = $DBH->prepare("SELECT current_balance FROM balance WHERE user_id='" . $_SESSION["user"] . "'");
 		$STH->execute();
@@ -119,6 +121,7 @@
 		clearCart();
 	}
 	
+	//Verifies that all the listings are available for purchase
 	function checkListingStatuses($cart, $DBH){
 		foreach($cart as $item){
 			$STH = $DBH->prepare("SELECT status FROM listing WHERE listing_id=$item");
@@ -132,6 +135,7 @@
 		return true;
 	}
 	
+	//Clears all cookies
 	function clearCart(){
 		$user_id = $_SESSION["user"];
 		$past = time() - 3600;

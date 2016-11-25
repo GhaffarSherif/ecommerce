@@ -2,6 +2,7 @@
 	function removeItem(){//$itemID){
 		if(isset($_POST["remove"])){
 			$itemID = $_POST["remove"];
+			
 			//Remove slashes that are escaping quotes
 			if(get_magic_quotes_gpc() == true){
 				foreach($_COOKIE as $key){
@@ -41,6 +42,7 @@
 				$STH = $DBH->prepare("SELECT * FROM listing WHERE listing_id='" . $item . "'");
 				$STH->execute();
 				
+				//Go through every row
 				while($row = $STH->fetch()){
 					//Put all the information into individual table cells
 					echo "<tr style='color: #e5edb8;'>";

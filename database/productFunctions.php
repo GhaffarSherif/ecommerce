@@ -163,8 +163,9 @@
 		}
 	}
 	
+	//Gets the reputation for a user
 	function getRepuation($userid, $DBH){
-		$STH = getUserReputation($userid, $DBH);
+		$STH = $DBH->query("SELECT * FROM reputation WHERE user_id='$userid'");
 		$counter = 0;
 		$row = $STH->fetch();
 		while (is_numeric($row['feedback'])){
@@ -172,10 +173,5 @@
 			$row = $STH->fetch();
 		} 
 		return $counter;
-	}
-	
-	function getUserReputation($userid, $DBH){
-		$STH = $DBH->query("SELECT * FROM reputation WHERE user_id='$userid'");
-		return $STH;
 	}
 ?>
